@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import Papa from 'papaparse';
+import Form from 'next/form';
 
 const OptionsForm = ({ onSubmit }) => {
     const [formData, setFormData] = useState({
-        chartType: 'line', // Tipo de gráfico por defecto
+        chartType: 'line',
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         borderColor: 'rgba(75, 192, 192, 1)',
         labels: '',
         values: '',
     });
+
+    const [csvLabels, setCsvLabels] = useState([]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -18,23 +20,58 @@ const OptionsForm = ({ onSubmit }) => {
         }));
     };
 
+    function csvFileToJson(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                const csvString = event.target.result;
+                const rows = csvString.split("\n");
+                const headers = rows[0].split(",").map(header => header.trim());
+                const jsonData = [];
+
+                for (let i = 1; i < rows.length; i++) {
+                    const values = rows[i].split(",").map(value => value.trim());
+                    const obj = {};
+
+                    headers.forEach((header, index) => {
+                        obj[header] = values[index] || null;
+                    });
+
+                    jsonData.push(obj);
+                }
+
+                resolve(jsonData);
+            };
+
+            reader.onerror = (error) => {
+                reject(error);
+            };
+
+            reader.readAsText(file);
+        });
+    }
+
     const handleFileUpload = (e) => {
         const file = e.target.files[0];
         if (file) {
-            // falta agregarlle la logica bien de los csv para que se adapte
-            Papa.parse(file, {
-                complete: (result) => {
-                    const data = result.data;
-                    const labels = data.map(row => row[0]).slice(1);
-                    const values = data.map(row => parseFloat(row[1])).slice(1);
+            if (!file.name.endsWith('.csv')) {
+                alert("Please upload a valid CSV file.");
+                return;
+            }
+            csvFileToJson(file)
+                .then(jsonData => {
+
+                    const labels = Object.keys(jsonData[0]).filter(key => key !== "");
+                    setCsvLabels(labels.map(label => label.trim()));
                     setFormData(prevData => ({
                         ...prevData,
-                        labels: labels.join(','),
-                        values: values.join(',')
+                        labels: labels
                     }));
-                },
-                header: false
-            });
+                })
+                .catch(error => {
+                    console.error("Error al leer el archivo:", error);
+                });
         }
     };
 
@@ -52,7 +89,7 @@ const OptionsForm = ({ onSubmit }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} style={{ maxWidth: '400px', margin: 'auto' }}>
+        <Form onSubmit={handleSubmit} style={{ maxWidth: '400px', margin: 'auto' }}>
             <h2>Opciones del Gráfico</h2>
             <div>
                 <label htmlFor="chartType">Tipo de Gráfico:</label>
@@ -118,8 +155,42 @@ const OptionsForm = ({ onSubmit }) => {
                     onChange={handleFileUpload}
                 />
             </div>
+
+            {csvLabels.length > 0 && (
+                <div>
+                    <label htmlFor="csvLabelsSelect">Seleccionar el eje x:</label>
+                    <select
+                        id="csvLabelsSelect"
+                        name="csvLabelsSelect"
+                        onChange={(e) => setFormData({ ...formData, labels: e.target.value })}
+                        defaultValue=""
+                    >
+                        <option value="" disabled>-- Selecciona una etiqueta --</option>
+                        {csvLabels.map((label, index) => (
+                            <option key={index} value={label}>{label}</option>
+                        ))}
+                    </select>
+                </div>
+            )}
+            {csvLabels.length > 0 && (
+                <div>
+                    <label htmlFor="csvLabelsSelect">Seleccionar el eje y:</label>
+                    <select
+                        id="csvLabelsSelect"
+                        name="csvLabelsSelect"
+                        onChange={(e) => setFormData({ ...formData, labels: e.target.value })}
+                        defaultValue=""
+                    >
+                        <option value="" disabled>-- Selecciona una etiqueta --</option>
+                        {csvLabels.map((label, index) => (
+                            <option key={index} value={label}>{label}</option>
+                        ))}
+                    </select>
+                </div>
+            )}
+
             <button type="submit">Generar Gráfico</button>
-        </form>
+        </Form>
     );
 };
 
