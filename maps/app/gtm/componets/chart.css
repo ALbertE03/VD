@@ -1,0 +1,42 @@
+.dashboard {
+    display: flex;
+}
+
+.dashboard .col1 {
+    border-radius: 5px;
+    margin: 20px;
+}
+
+.dashboard .col1 h1 {
+    margin-top: 10px;
+    font-size: x-large;
+    font: bold;
+}
+
+.table-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.table-container.collapsed {
+    max-height: 40px;
+}
+
+.table-container.expanded {
+    max-height: 500px;
+}
+
+.table-title {
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+}
+
+.table-content {
+    padding: 10px;
+    background-color: #f9f9f9;
+}
