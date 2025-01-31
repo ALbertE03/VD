@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styles from "./Expander.module.css";
 
-const Expander = ({ title, children }) => {
-    const [isExpanded, setIsExpanded] = useState(false);
+const Expander = ({ title, children, s }) => {
+    const [isExpanded, setIsExpanded] = useState(s);
 
     const toggleExpander = () => {
         setIsExpanded(!isExpanded);
