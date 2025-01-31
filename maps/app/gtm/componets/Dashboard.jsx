@@ -3,7 +3,7 @@ import { Chart, registerables } from 'chart.js';
 import './Dashboard.css';
 import Table from './table';
 import Expander from "./Expander";
-import LinePlot from './LineChart';
+import ComparativePlot from './LineChart';
 Chart.register(...registerables);
 import * as d3 from "d3";
 import { useState, useEffect } from 'react';
@@ -40,7 +40,7 @@ const Dashboard = () => {
             </div>
             <div>
                 <h2>alumnos por regimen de estudio</h2>
-                {data.length > 0 ? <LinePlot data={data} /> : <p>Cargando datos...</p>}
+                {data.length > 0 ? <ComparativePlot data={data} /> : <p>Cargando datos...</p>}
             </div>
         </div>
     );

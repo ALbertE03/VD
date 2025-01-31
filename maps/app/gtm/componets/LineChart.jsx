@@ -1,35 +1,19 @@
 import * as d3 from "d3";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState } from "react";
 
-export default function LinePlot({
-    data,
-    width = 640,
-    height = 400,
-    marginTop = 20,
-    marginRight = 20,
-    marginBottom = 30,
-    marginLeft = 40
-}) {
+const LinePlot = ({ data, width = 400, height = 300, title, filterFn }) => {
     const svgRef = useRef();
-    const gx = useRef();
-    const gy = useRef();
-    const gyGrid = useRef();
-    const [hoveredPoint, setHoveredPoint] = useState(null);
-    const [hiddenSeries, setHiddenSeries] = useState(new Set());
+    const [hoveredSeries, setHoveredSeries] = useState(null);
 
-    const filteredData = data.filter(d =>
-        d.CONCEPTOS.toLowerCase().includes("(total)")
-    );
+    const margin = { top: 20, right: 15, bottom: 40, left: 40 };
+    const chartWidth = width - margin.left - margin.right;
+    const chartHeight = height - margin.top - margin.bottom;
 
+    const filteredData = data.filter(filterFn);
     const years = ['2016-2017', '2017-2018', '2018-2019', '2019-2020'];
     const seriesNames = filteredData.map(d => d.CONCEPTOS);
 
-    const color = d3.scaleOrdinal()
-        .domain(seriesNames)
-        .range([
-            '#2c5c6a', '#4a8c79', '#7cb518', '#ff6b35',
-            '#5e548e', '#ef476f', '#118ab2', '#06d6a0'
-        ]);
+    const color = d3.scaleOrdinal(d3.schemeTableau10).domain(seriesNames);
 
     const formattedData = seriesNames.map(name => ({
         name,
@@ -41,37 +25,26 @@ export default function LinePlot({
 
     const x = d3.scalePoint()
         .domain(years)
-        .range([marginLeft, width - marginRight]);
+        .range([margin.left, chartWidth + margin.left]);
 
     const y = d3.scaleLinear()
-        .domain([0, d3.max(formattedData.flatMap(series =>
-            hiddenSeries.has(series.name) ? [] : series.values.map(v => v.value)
-        ))])
+        .domain([0, d3.max(formattedData.flatMap(series => series.values.map(v => v.value)))])
         .nice()
-        .range([height - marginBottom, marginTop]);
+        .range([chartHeight + margin.top, margin.top]);
 
     const line = d3.line()
         .x(d => x(d.year))
         .y(d => y(d.value));
 
-    useEffect(() => {
-        d3.select(gx.current).call(d3.axisBottom(x).tickSizeOuter(0));
-        d3.select(gy.current).call(d3.axisLeft(y).ticks(5));
-        d3.select(gyGrid.current).call(
-            d3.axisLeft(y)
-                .tickSize(-width + marginLeft + marginRight)
-                .tickFormat("")
-        );
-    }, [x, y]);
+
+    const handleSeriesHover = (seriesName) => {
+        setHoveredSeries(seriesName);
+    };
 
     const handleMouseMove = (event) => {
         const [xPos, yPos] = d3.pointer(event, svgRef.current);
         const closestPoint = formattedData
-            .flatMap(series =>
-                hiddenSeries.has(series.name)
-                    ? []
-                    : series.values.map(d => ({ ...d, series: series.name }))
-            )
+            .flatMap(series => series.values.map(d => ({ ...d, series: series.name })))
             .reduce((closest, d) => {
                 const distance = Math.hypot(x(d.year) - xPos, y(d.value) - yPos);
                 return distance < 20 && distance < closest.distance
@@ -80,50 +53,97 @@ export default function LinePlot({
             }, { distance: Infinity });
 
         if (closestPoint.distance < 20) {
-            setHoveredPoint(closestPoint);
-            d3.select("#tooltip")
-                .style("left", `${x(closestPoint.year) + marginLeft - 30}px`)
-                .style("top", `${y(closestPoint.value) - 30}px`)
-                .style("opacity", 1);
+            const tooltip = d3.select(`#tooltip-${title}`);
+            tooltip.style("opacity", 1)
+                .style("left", `${Math.min(x(closestPoint.year) + 10, width - 120)}px`)
+                .style("top", `${y(closestPoint.value) - 40}px`)
+                .html(`
+          <div style="color: ${color(closestPoint.series)}; font-weight: 600;">
+            ${closestPoint.series}
+          </div>
+          <div style="color: #666;">
+            ${closestPoint.year}: ${d3.format(",")(closestPoint.value)}
+          </div>
+        `);
         } else {
-            setHoveredPoint(null);
-            d3.select("#tooltip").style("opacity", 0);
+            d3.select(`#tooltip-${title}`).style("opacity", 0);
         }
     };
 
-    const toggleSeries = (name) => {
-        setHiddenSeries(prev => {
-            const next = new Set(prev);
-            next.has(name) ? next.delete(name) : next.add(name);
-            return next;
-        });
-    };
-
     return (
-        <div style={{ position: 'relative' }}>
+        <div style={{
+            position: 'relative',
+            width: '100%',
+            maxWidth: width,
+            margin: '10px',
+            padding: '5px'
+        }}>
+            <h3 style={{
+                fontSize: '0.9rem',
+                marginBottom: '8px',
+                color: '#333'
+            }}>{title}</h3>
+
             <svg
                 ref={svgRef}
-                width={width}
-                height={height}
+                viewBox={`0 0 ${width} ${height}`}
+                preserveAspectRatio="xMidYMid meet"
+                style={{ width: '100%', height: 'auto' }}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={() => {
-                    setHoveredPoint(null);
-                    d3.select("#tooltip").style("opacity", 0);
+                    setHoveredSeries(null);
+                    d3.select(`#tooltip-${title}`).style("opacity", 0);
                 }}
             >
-                <g ref={gx} transform={`translate(0,${height - marginBottom})`} />
-                <g ref={gy} transform={`translate(${marginLeft},0)`} />
-                <g ref={gyGrid} transform={`translate(${marginLeft},0)`} className="grid" />
 
-                {formattedData.map((series) => !hiddenSeries.has(series.name) && (
+                <g transform={`translate(0,${chartHeight + margin.top})`}>
+                    {x.domain().map((d, i) => (
+                        <g key={i} transform={`translate(${x(d)},0)`}>
+                            <text
+                                x="0"
+                                y="20"
+                                fontSize="0.6rem"
+                                textAnchor="end"
+                                transform="rotate(-45)"
+                                fill="#666"
+                            >
+                                {d.split('-')[0]}
+                            </text>
+                        </g>
+                    ))}
+                </g>
+
+
+                <g transform={`translate(${margin.left},0)`}>
+                    {y.ticks(5).map((tick, i) => (
+                        <g key={i} transform={`translate(0,${y(tick)})`}>
+                            <line x2={chartWidth} stroke="#eee" />
+                            <text
+                                x="-5"
+                                y="2"
+                                fontSize="0.6rem"
+                                textAnchor="end"
+                                fill="#666"
+                            >
+                                {d3.format("~s")(tick)}
+                            </text>
+                        </g>
+                    ))}
+                </g>
+
+
+                {formattedData.map((series) => (
                     <g
                         key={series.name}
-                        opacity={hoveredPoint && hoveredPoint.series !== series.name ? 0.3 : 1}
+                        style={{ transition: 'opacity 0.1s' }}
+                        opacity={hoveredSeries && hoveredSeries !== series.name ? 0.2 : 1}
+                        onMouseEnter={() => handleSeriesHover(series.name)}
+                        onMouseLeave={() => handleSeriesHover(null)}
                     >
                         <path
                             fill="none"
                             stroke={color(series.name)}
-                            strokeWidth={2.5}
+                            strokeWidth={1.5}
                             d={line(series.values)}
                         />
                         {series.values.map((d, j) => (
@@ -131,57 +151,40 @@ export default function LinePlot({
                                 key={j}
                                 cx={x(d.year)}
                                 cy={y(d.value)}
-                                r={4.5}
+                                r={3}
                                 fill={color(series.name)}
                                 stroke="#fff"
-                                strokeWidth={2}
+                                strokeWidth={1}
                             />
                         ))}
                     </g>
                 ))}
             </svg>
 
-            <div id="tooltip" style={{
-                position: 'absolute',
-                opacity: 0,
-                background: '#ffffff',
-                padding: '12px',
-                borderRadius: '8px',
-                boxShadow: '0 3px 10px rgba(0,0,0,0.15)',
-                pointerEvents: 'none',
-                fontFamily: 'Arial',
-                fontSize: '14px',
-                transition: 'opacity 0.2s',
-                border: '1px solid #e0e0e0',
-                minWidth: '140px'
-            }}>
-                {hoveredPoint && (
-                    <div>
-                        <div style={{
-                            color: color(hoveredPoint.series),
-                            fontWeight: 600,
-                            fontSize: '15px',
-                            marginBottom: '6px'
-                        }}>
-                            {hoveredPoint.series}
-                        </div>
-                        <div style={{ color: '#444' }}>
-                            <div style={{ marginBottom: '4px' }}>Año: {hoveredPoint.year}</div>
-                            <div>Valor: {d3.format(",.0f")(hoveredPoint.value)}</div>
-                        </div>
-                    </div>
-                )}
-            </div>
+            <div
+                id={`tooltip-${title}`}
+                style={{
+                    position: 'absolute',
+                    opacity: 0,
+                    background: 'rgba(255, 255, 255, 0.95)',
+                    padding: '8px',
+                    borderRadius: '4px',
+                    boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
+                    pointerEvents: 'none',
+                    fontSize: '0.75rem',
+                    border: '1px solid #ddd',
+                    maxWidth: '150px',
+                    lineHeight: '1.3'
+                }}
+            />
+
 
             <div style={{
                 display: 'flex',
                 flexWrap: 'wrap',
-                gap: '12px',
-                marginTop: '16px',
-                padding: '12px',
-                borderRadius: '8px',
-                background: '#f8f9fa',
-                boxShadow: '0 2px 6px rgba(0,0,0,0.05)'
+                gap: '8px',
+                marginTop: '10px',
+                padding: '5px'
             }}>
                 {formattedData.map((series) => (
                     <div
@@ -190,33 +193,63 @@ export default function LinePlot({
                             display: 'flex',
                             alignItems: 'center',
                             cursor: 'pointer',
-                            opacity: hiddenSeries.has(series.name) ? 0.3 : 1,
-                            transition: 'all 0.2s',
-                            padding: '8px 12px',
-                            borderRadius: '6px',
-                            background: hoveredPoint?.series === series.name ? 'rgba(0,0,0,0.05)' : 'transparent'
+                            opacity: hoveredSeries && hoveredSeries !== series.name ? 0.2 : 1,
+                            transition: 'opacity 0.1s',
+                            padding: '4px 8px',
+                            borderRadius: '4px'
                         }}
-                        onClick={() => toggleSeries(series.name)}
+                        onMouseEnter={() => handleSeriesHover(series.name)}
+                        onMouseLeave={() => handleSeriesHover(null)}
                     >
                         <div style={{
-                            width: '16px',
-                            height: '16px',
+                            width: '12px',
+                            height: '12px',
                             background: color(series.name),
-                            borderRadius: '4px',
-                            marginRight: '12px',
-                            boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                            borderRadius: '2px',
+                            marginRight: '6px'
                         }}></div>
                         <span style={{
-                            fontSize: '14px',
-                            color: '#2d3436',
-                            fontWeight: 500,
-                            textDecoration: hiddenSeries.has(series.name) ? 'line-through' : 'none'
+                            fontSize: '0.75rem',
+                            color: '#444'
                         }}>
                             {series.name}
                         </span>
                     </div>
                 ))}
             </div>
+        </div>
+    );
+};
+
+export default function FastHoverComparativePlot({ data }) {
+    return (
+        <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '15px',
+            padding: '10px',
+            width: '100%',
+            maxWidth: '800px',
+            margin: '0 auto'
+        }}>
+            <LinePlot
+                data={data}
+                title="Totales"
+                filterFn={d => d.CONCEPTOS.toLowerCase().includes("(total)")}
+                width={400}
+                height={280}
+            />
+
+            <LinePlot
+                data={data}
+                title="Medias-Especiales"
+                filterFn={d =>
+                    d.CONCEPTOS.toLowerCase().includes("(media)") ||
+                    d.CONCEPTOS.toLowerCase().includes("(especial)")
+                }
+                width={400}
+                height={280}
+            />
         </div>
     );
 }
