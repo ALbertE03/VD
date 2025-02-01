@@ -1,0 +1,356 @@
+{
+    "Ambos sexos": {
+        "1998": {
+            "Primario o menos": 783.1,
+            "Secundario": 1400.6,
+            "Medio superior": 1791.0,
+            "Superior": 598.4,
+            "Total": 4573.1
+        },
+        "1999": {
+            "Primario o menos": 780.9,
+            "Secundario": 1449.1,
+            "Medio superior": 1855.2,
+            "Superior": 565.1,
+            "Total": 4650.3
+        },
+        "2000": {
+            "Primario o menos": 745.8,
+            "Secundario": 1416.5,
+            "Medio superior": 1867.8,
+            "Superior": 601.4,
+            "Total": 4631.5
+        },
+        "2001": {
+            "Primario o menos": 704.6,
+            "Secundario": 1423.6,
+            "Medio superior": 1938.2,
+            "Superior": 630.3,
+            "Total": 4696.7
+        },
+        "2002": {
+            "Primario o menos": 670.0,
+            "Secundario": 1435.5,
+            "Medio superior": 1975.6,
+            "Superior": 633.2,
+            "Total": 4714.3
+        },
+        "2003": {
+            "Primario o menos": 598.4,
+            "Secundario": 1425.6,
+            "Medio superior": 2032.4,
+            "Superior": 660.2,
+            "Total": 4716.6
+        },
+        "2004": {
+            "Primario o menos": 567.5,
+            "Secundario": 1409.5,
+            "Medio superior": 2085.3,
+            "Superior": 667.1,
+            "Total": 4729.4
+        },
+        "2005": {
+            "Primario o menos": 514.7,
+            "Secundario": 1443.9,
+            "Medio superior": 2197.5,
+            "Superior": 662.1,
+            "Total": 4816.4
+        },
+        "2006": {
+            "Primario o menos": 478.1,
+            "Secundario": 1346.2,
+            "Medio superior": 2357.3,
+            "Superior": 665.7,
+            "Total": 4847.3
+        },
+        "2007": {
+            "Primario o menos": 396.7,
+            "Secundario": 1353.9,
+            "Medio superior": 2476.2,
+            "Superior": 729.5,
+            "Total": 4956.3
+        },
+        "2008": {
+            "Primario o menos": 401.0,
+            "Secundario": 1353.4,
+            "Medio superior": 2545.9,
+            "Superior": 727.6,
+            "Total": 5027.9
+        },
+        "2009": {
+            "Primario o menos": 362.2,
+            "Secundario": 1264.5,
+            "Medio superior": 2673.6,
+            "Superior": 772.1,
+            "Total": 5072.4
+        },
+        "2010": {
+            "Primario o menos": 341.1,
+            "Secundario": 1229.3,
+            "Medio superior": 2733.2,
+            "Superior": 808.9,
+            "Total": 5112.5
+        },
+        "2011": {
+            "Primario o menos": 317.7,
+            "Secundario": 1198.8,
+            "Medio superior": 2527.6,
+            "Superior": 966.0,
+            "Total": 5010.1
+        },
+        "2012": {
+            "Primario o menos": 256.4,
+            "Secundario": 1139.4,
+            "Medio superior": 2696.5,
+            "Superior": 985.6,
+            "Total": 5077.9
+        },
+        "2013": {
+            "Primario o menos": 264.5,
+            "Secundario": 1103.1,
+            "Medio superior": 2653.4,
+            "Superior": 1065.0,
+            "Total": 5086.0
+        },
+        "2014": {
+            "Primario o menos": 261.0,
+            "Secundario": 1106.4,
+            "Medio superior": 2631.6,
+            "Superior": 1106.5,
+            "Total": 5105.5
+        },
+        "2015": {
+            "Primario o menos": 244.4,
+            "Secundario": 1128.1,
+            "Medio superior": 2391.1,
+            "Superior": 1069.1,
+            "Total": 4832.7
+        },
+        "2016": {
+            "Primario o menos": 220.2,
+            "Secundario": 1115.5,
+            "Medio superior": 2310.8,
+            "Superior": 1039.7,
+            "Total": 4686.2
+        },
+        "2017": {
+            "Primario o menos": 215.0,
+            "Secundario": 995.9,
+            "Medio superior": 2334.1,
+            "Superior": 1005.0,
+            "Total": 4550.0
+        },
+        "2018": {
+            "Primario o menos": 201.1,
+            "Secundario": 993.0,
+            "Medio superior": 2366.2,
+            "Superior": 998.3,
+            "Total": 4631.4
+        },
+        "2019": {
+            "Primario o menos": 193.0,
+            "Secundario": 987.6,
+            "Medio superior": 2435.6,
+            "Superior": 1026.1,
+            "Total": 4642.3
+        },
+        "2020": {
+            "Primario o menos": 195.2,
+            "Secundario": 999.5,
+            "Medio superior": 2471.3,
+            "Superior": 1044.0,
+            "Total": 4710.0
+        },
+        "2021": {
+            "Primario o menos": null,
+            "Secundario": null,
+            "Medio superior": null,
+            "Superior": null,
+            "Total": null
+        },
+        "2022": {
+            "Primario o menos": 140.6,
+            "Secundario": 941.4,
+            "Medio superior": 2417.1,
+            "Superior": 1091.5,
+            "Total": 4590.6
+        }
+    },
+    "Mujeres": {
+        "1998": {
+            "Primario o menos": 189.4,
+            "Secundario": 416.9,
+            "Medio superior": 785.8,
+            "Superior": 281.0,
+            "Total": 1673.1
+        },
+        "1999": {
+            "Primario o menos": 194.8,
+            "Secundario": 435.4,
+            "Medio superior": 820.1,
+            "Superior": 259.4,
+            "Total": 1709.7
+        },
+        "2000": {
+            "Primario o menos": 186.3,
+            "Secundario": 413.5,
+            "Medio superior": 807.6,
+            "Superior": 292.6,
+            "Total": 1700.0
+        },
+        "2001": {
+            "Primario o menos": 164.6,
+            "Secundario": 406.9,
+            "Medio superior": 822.0,
+            "Superior": 303.1,
+            "Total": 1696.6
+        },
+        "2002": {
+            "Primario o menos": 155.2,
+            "Secundario": 400.5,
+            "Medio superior": 848.3,
+            "Superior": 306.6,
+            "Total": 1710.6
+        },
+        "2003": {
+            "Primario o menos": 129.7,
+            "Secundario": 381.5,
+            "Medio superior": 884.3,
+            "Superior": 323.2,
+            "Total": 1719.6
+        },
+        "2004": {
+            "Primario o menos": 130.5,
+            "Secundario": 378.8,
+            "Medio superior": 886.2,
+            "Superior": 325.8,
+            "Total": 1724.0
+        },
+        "2005": {
+            "Primario o menos": 115.8,
+            "Secundario": 365.5,
+            "Medio superior": 944.8,
+            "Superior": 321.0,
+            "Total": 1762.9
+        },
+        "2006": {
+            "Primario o menos": 107.6,
+            "Secundario": 365.5,
+            "Medio superior": 1006.5,
+            "Superior": 329.3,
+            "Total": 1808.9
+        },
+        "2007": {
+            "Primario o menos": 82.7,
+            "Secundario": 371.9,
+            "Medio superior": 1070.8,
+            "Superior": 361.6,
+            "Total": 1887.0
+        },
+        "2008": {
+            "Primario o menos": 85.7,
+            "Secundario": 375.7,
+            "Medio superior": 1083.7,
+            "Superior": 365.9,
+            "Total": 1912.8
+        },
+        "2009": {
+            "Primario o menos": 69.0,
+            "Secundario": 336.1,
+            "Medio superior": 1128.7,
+            "Superior": 400.3,
+            "Total": 1934.1
+        },
+        "2010": {
+            "Primario o menos": 64.6,
+            "Secundario": 305.2,
+            "Medio superior": 1156.4,
+            "Superior": 427.1,
+            "Total": 1953.3
+        },
+        "2011": {
+            "Primario o menos": 55.9,
+            "Secundario": 280.9,
+            "Medio superior": 1015.2,
+            "Superior": 524.3,
+            "Total": 1876.3
+        },
+        "2012": {
+            "Primario o menos": 23.6,
+            "Secundario": 255.8,
+            "Medio superior": 1051.1,
+            "Superior": 539.8,
+            "Total": 1870.3
+        },
+        "2013": {
+            "Primario o menos": 46.6,
+            "Secundario": 238.1,
+            "Medio superior": 1025.2,
+            "Superior": 596.3,
+            "Total": 1906.2
+        },
+        "2014": {
+            "Primario o menos": 44.2,
+            "Secundario": 233.6,
+            "Medio superior": 1007.2,
+            "Superior": 623.1,
+            "Total": 1908.1
+        },
+        "2015": {
+            "Primario o menos": 42.3,
+            "Secundario": 187.8,
+            "Medio superior": 927.9,
+            "Superior": 625.1,
+            "Total": 1810.6
+        },
+        "2016": {
+            "Primario o menos": 36.4,
+            "Secundario": 239.2,
+            "Medio superior": 872.6,
+            "Superior": 599.5,
+            "Total": 1747.7
+        },
+        "2017": {
+            "Primario o menos": 37.5,
+            "Secundario": 198.3,
+            "Medio superior": 881.8,
+            "Superior": 576.9,
+            "Total": 1694.5
+        },
+        "2018": {
+            "Primario o menos": 33.4,
+            "Secundario": 191.4,
+            "Medio superior": 893.4,
+            "Superior": 571.5,
+            "Total": 1689.7
+        },
+        "2019": {
+            "Primario o menos": 33.7,
+            "Secundario": 201.9,
+            "Medio superior": 964.1,
+            "Superior": 612.4,
+            "Total": 1812.1
+        },
+        "2020": {
+            "Primario o menos": 34.5,
+            "Secundario": 206.5,
+            "Medio superior": 986.2,
+            "Superior": 626.5,
+            "Total": 1853.7
+        },
+        "2021": {
+            "Primario o menos": null,
+            "Secundario": null,
+            "Medio superior": null,
+            "Superior": null,
+            "Total": null
+        },
+        "2022": {
+            "Primario o menos": 22.6,
+            "Secundario": 187.4,
+            "Medio superior": 907.4,
+            "Superior": 625.1,
+            "Total": 1742.9
+        }
+    }
+}

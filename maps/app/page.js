@@ -1,9 +1,14 @@
-import HEADER from "./componets/header";
+
+import Header from "./componets/header";
+
+import EducationChart from "./componets/GeneralSection";
+
 
 export default function Home() {
-
-  return <div>
-    <HEADER />
-  </div>
-
-};
+  return (
+    <div>
+      <Header />
+      <EducationChart />
+    </div>
+  );
+}

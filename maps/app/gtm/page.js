@@ -4,6 +4,7 @@ import './page.css';
 export default function Home() {
     return <div >
         <HEADER />
+        <h1>Guantánamo</h1>
         <Dashboard />
     </div >
 
