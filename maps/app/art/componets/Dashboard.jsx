@@ -12,7 +12,6 @@ import { useState, useEffect } from 'react';
 import styles from "./Dashboard.module.css";
 import MatriculasTable from './MatriculasTable';
 import Heatmap from './HeapMao';
-import InfografiaMunicipios from './infografia';
 Chart.register(...registerables);
 
 const Dashboard = () => {
@@ -51,8 +50,7 @@ const Dashboard = () => {
                     </Expander>
                 </div>
             </div>
-            <div className={styles.col2}> <InfografiaMunicipios url={'/data/gtm/escuelas por educaciones y muicipios.csv'} /></div>
-            <div className={styles.col3}>
+            <div className={styles.col2}>
                 <div className={styles.heap}>
                     <div className={styles.heatmapContainer}>
                         <Heatmap
@@ -69,6 +67,7 @@ const Dashboard = () => {
                         />
                     </div>
                 </div>
+
                 <h1>Matrículas por cada 10000 habitantes</h1>
                 <MatriculasTable />
                 <h1>matricula final de los circulos infantiles</h1>

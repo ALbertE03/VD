@@ -1,0 +1,51 @@
+.expanderContainer {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  padding-bottom: 5px;
+}
+
+.expanderHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.expanderHeader:hover {
+  background-color: #f0f0f0;
+}
+
+.expanderHeader h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.arrow {
+  font-size: 18px;
+  color: #666;
+}
+
+.expanderContent {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.expanded {
+  width: 100%;
+  max-height: 600px;
+  /* Ajusta según el contenido */
+  padding: 16px;
+}
+
+.collapsed {
+  max-height: 0;
+  padding: 0 16px;
+}
