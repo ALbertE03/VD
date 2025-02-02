@@ -13,11 +13,11 @@ function Header() {
                     <button className="dropdown-toggle">Provincial &#9662;</button>
                     <div className="dropdown-content">
                         <Link href="pr" data-content="pr">Pinar Del Rio</Link>
-                        <Link href="Art" data-content="Arte">Artemisa</Link>
+                        <Link href="art" data-content="Arte">Artemisa</Link>
                         <Link href="lh" data-content="LH">La Habana</Link>
-                        <Link href="May" data-content="Maya">Mayabeque</Link>
-                        <Link href="Mtz" data-content="Mtz">Matanzas</Link>
-                        <Link href="Cfg" data-content="Cfg">Cienfuegos</Link>
+                        <Link href="may" data-content="Maya">Mayabeque</Link>
+                        <Link href="mtz" data-content="Mtz">Matanzas</Link>
+                        <Link href="cfg" data-content="Cfg">Cienfuegos</Link>
                         <Link href="vc" data-content="VC">Villa Clara</Link>
                         <Link href="ss" data-content="SS">Sancti Spíritus</Link>
                         <Link href="ca" data-content="CAv">Ciego de Ávila</Link>
