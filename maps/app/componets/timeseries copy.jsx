@@ -2,8 +2,8 @@
 import { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import * as d3 from 'd3';
-
-const TimeSeriesChart1 = ({ url, name }) => {
+import React, { memo } from 'react';
+const TimeSeriesChart1 = memo(({ url, name }) => {
     const [data, setData] = useState([]);
     const [activeLine, setActiveLine] = useState(null); // Estado para controlar el hover
     const [visibleLines, setVisibleLines] = useState({}); // Estado para controlar la visibilidad de las líneas
@@ -97,6 +97,6 @@ const TimeSeriesChart1 = ({ url, name }) => {
             </ResponsiveContainer>
         </div>
     );
-};
+});
 
 export default TimeSeriesChart1;

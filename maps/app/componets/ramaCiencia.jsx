@@ -2,8 +2,9 @@
 import { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import * as d3 from 'd3';
+import React, { memo } from 'react';
 
-const LineChartComponent = ({ urlGeneral, urlMujeres }) => {
+const LineChartComponent = memo(({ urlGeneral, urlMujeres }) => {
     const [generalData, setGeneralData] = useState([]);
     const [womenData, setWomenData] = useState([]);
     const [branches, setBranches] = useState([]);
@@ -151,6 +152,6 @@ const LineChartComponent = ({ urlGeneral, urlMujeres }) => {
             </div>
         </div>
     );
-};
+});
 
 export default LineChartComponent;

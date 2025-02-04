@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-const EducationChart = () => {
+const EducationChart = memo(() => {
     const [chartData, setChartData] = useState([]);
 
     useEffect(() => {
@@ -65,6 +65,6 @@ const EducationChart = () => {
             </div>
         </div>
     );
-};
+});
 
 export default EducationChart;

@@ -1,9 +1,9 @@
 'use client';
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import Papa from "papaparse";
 import styles from "./table.module.css";
 
-const Table = ({ url }) => {
+const Table = memo(({ url }) => {
     const [data, setData] = useState([]);
     const [headers, setHeaders] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -65,6 +65,6 @@ const Table = ({ url }) => {
             </table>
         </div>
     );
-};
+});
 
 export default Table;

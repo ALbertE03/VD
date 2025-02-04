@@ -8,6 +8,7 @@ import PieChartComponent from "../componets/piechart";
 import Expander from "../componets/Expander";
 import Table from "../componets/table";
 import LineChartComponent from "../componets/ramaCiencia";
+import EducationLevelChart from "../componets/science";
 export default function Home() {
     return (
         <div>
@@ -22,6 +23,7 @@ export default function Home() {
                 <Table url="/data/general/18.4-indicadores-generales-de-la-educacion.csv"></Table>
             </Expander>
             <LineChartComponent urlGeneral={'/data/general/18.19-matricula-inicial-de-la-educacion-superior-por-ramas-de-la-ciencia-.csv'} urlMujeres={'/data/general/18.22-graduados-de-la-educacion-superior-por-ramas-de-la-ciencia.-mujeres-.csv'} />
+            <EducationLevelChart url={'data/general/7.6-nivel-educacional-de-la-poblacion-economicamente-activa-mujeres.csv'} />
         </div>
     );
 }

@@ -1,8 +1,8 @@
 'use client';
-import React, { useState } from "react";
-import styles from "./Expander.module.css";
 
-const Expander = ({ title, children, s }) => {
+import styles from "./Expander.module.css";
+import React, { memo, useState } from 'react';
+const Expander = memo(({ title, children, s }) => {
     const [isExpanded, setIsExpanded] = useState(s);
 
     const toggleExpander = () => {
@@ -23,6 +23,6 @@ const Expander = ({ title, children, s }) => {
             </div>
         </div>
     );
-};
+});
 
 export default Expander;

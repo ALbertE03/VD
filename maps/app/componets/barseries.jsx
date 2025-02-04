@@ -2,8 +2,8 @@
 import { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from 'recharts';
 import * as d3 from 'd3';
-
-const BarChartComponent = ({ url }) => {
+import React, { memo } from 'react';
+const BarChartComponent = memo(({ url }) => {
     const [data, setData] = useState([]);
     const [average, setAverage] = useState(0);
 
@@ -74,6 +74,6 @@ const BarChartComponent = ({ url }) => {
             </ResponsiveContainer>
         </div>
     );
-};
+});
 
 export default BarChartComponent;

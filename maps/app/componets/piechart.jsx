@@ -2,8 +2,8 @@
 import { useState, useEffect } from 'react';
 import { PieChart, Pie, Tooltip, Legend, Cell, ResponsiveContainer } from 'recharts';
 import * as d3 from 'd3';
-
-const PieChartComponent = ({ url }) => {
+import React, { memo } from 'react';
+const PieChartComponent = memo(({ url }) => {
     const [data, setData] = useState([]);
     const [years, setYears] = useState([]);
     const [selectedYear, setSelectedYear] = useState("");
@@ -66,7 +66,7 @@ const PieChartComponent = ({ url }) => {
 
     return (
         <div className="p-6 bg-white shadow-lg rounded-lg">
-            <h1 className="text-2xl font-bold mb-4 text-center">Distribución de Matrículas</h1>
+            <h1 className="text-2xl font-bold mb-4 text-center">Asistencia Promedio a los circulos infantiles</h1>
 
             {/* Selector de Año */}
             <div className="flex justify-center mb-4">
@@ -105,6 +105,6 @@ const PieChartComponent = ({ url }) => {
             </ResponsiveContainer>
         </div>
     );
-};
+});
 
 export default PieChartComponent;
