@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { PieChart, Pie, Tooltip, Legend, Cell, ResponsiveContainer } from 'recharts';
 import * as d3 from 'd3';
 import React, { memo } from 'react';
+
 const PieChartComponent = memo(({ url }) => {
     const [data, setData] = useState([]);
     const [years, setYears] = useState([]);
