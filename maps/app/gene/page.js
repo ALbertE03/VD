@@ -9,6 +9,7 @@ import Expander from "../componets/Expander";
 import Table from "../componets/table";
 import LineChartComponent from "../componets/ramaCiencia";
 import EducationLevelChart from "../componets/science";
+
 export default function Home() {
     return (
         <div>

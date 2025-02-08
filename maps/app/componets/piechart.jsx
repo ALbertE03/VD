@@ -13,21 +13,21 @@ const PieChartComponent = memo(({ url }) => {
             try {
                 const rawData = await d3.csv(url);
 
-                // Obtener los años desde la primera fila (cabecera del CSV)
+
                 const availableYears = Object.keys(rawData[0]).filter(key => key !== "CONCEPTO");
 
                 setYears(availableYears);
-                setSelectedYear(availableYears[availableYears.length - 1]); // Seleccionar el año más reciente por defecto
+                setSelectedYear(availableYears[availableYears.length - 1]);
 
-                // Función para transformar datos al formato correcto
+
                 const transformData = (year) => {
                     return rawData
-                        .filter(row => row.CONCEPTO !== "Total") // Excluir "Total"
+                        .filter(row => row.CONCEPTO !== "Total")
                         .map(row => ({
-                            name: row.CONCEPTO, // Nombre de la categoría
-                            value: +row[year] || 0 // Convertir a número
+                            name: row.CONCEPTO,
+                            value: +row[year] || 0
                         }))
-                        .filter(item => item.value > 0); // Filtrar valores inválidos
+                        .filter(item => item.value > 0);
                 };
 
                 setData(transformData(availableYears[availableYears.length - 1]));
@@ -39,7 +39,6 @@ const PieChartComponent = memo(({ url }) => {
         fetchData();
     }, [url]);
 
-    // Manejar el cambio de año en el selector
     const handleYearChange = (event) => {
         const year = event.target.value;
         setSelectedYear(year);
@@ -61,14 +60,13 @@ const PieChartComponent = memo(({ url }) => {
         return <p className="text-center text-gray-600">Cargando datos...</p>;
     }
 
-    // Colores personalizados para el gráfico de pastel
+
     const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#D72638", "#A620A6"];
 
     return (
         <div className="p-6 bg-white shadow-lg rounded-lg">
             <h1 className="text-2xl font-bold mb-4 text-center">Asistencia Promedio a los circulos infantiles</h1>
 
-            {/* Selector de Año */}
             <div className="flex justify-center mb-4">
                 <label className="mr-2 font-semibold">Seleccionar Año:</label>
                 <select
@@ -82,7 +80,6 @@ const PieChartComponent = memo(({ url }) => {
                 </select>
             </div>
 
-            {/* Gráfico de Pastel */}
             <ResponsiveContainer width="100%" height={400}>
                 <PieChart>
                     <Pie

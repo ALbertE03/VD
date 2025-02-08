@@ -5,8 +5,8 @@ import * as d3 from 'd3';
 import React, { memo } from 'react';
 const TimeSeriesChart1 = memo(({ url, name }) => {
     const [data, setData] = useState([]);
-    const [activeLine, setActiveLine] = useState(null); // Estado para controlar el hover
-    const [visibleLines, setVisibleLines] = useState({}); // Estado para controlar la visibilidad de las líneas
+    const [activeLine, setActiveLine] = useState(null);
+    const [visibleLines, setVisibleLines] = useState({});
     const [chartTitle, setChartTitle] = useState(name);
 
     useEffect(() => {
@@ -16,19 +16,16 @@ const TimeSeriesChart1 = memo(({ url, name }) => {
         const fetchData = async () => {
             try {
                 const rawData = await d3.csv(url);
-
-                // Convertir los valores a números y transformar los datos
                 const formattedData = rawData.map((row) => {
                     const newRow = { CONCEPTO: row.CONCEPTO };
                     Object.keys(row).forEach((key) => {
                         if (key !== "CONCEPTO") {
-                            newRow[key] = +row[key] || 0; // Convertir a número y manejar NaN
+                            newRow[key] = +row[key] || 0;
                         }
                     });
                     return newRow;
                 });
 
-                // Transformar los datos para Recharts
                 const years = Object.keys(formattedData[0]).filter((key) => key !== "CONCEPTO");
                 const transformedData = years.map((year) => {
                     const yearData = { year };
@@ -48,7 +45,7 @@ const TimeSeriesChart1 = memo(({ url, name }) => {
     }, [url]);
 
     if (data.length === 0) {
-        return <p>Cargando datos...</p>; // Mensaje de carga
+        return <p>Cargando datos...</p>;
     }
 
     const colors = [
@@ -61,7 +58,7 @@ const TimeSeriesChart1 = memo(({ url, name }) => {
     const handleLineClick = (concepto) => {
         setVisibleLines((prev) => ({
             ...prev,
-            [concepto]: !prev[concepto], // Alternar visibilidad
+            [concepto]: !prev[concepto],
         }));
     };
 
@@ -77,7 +74,7 @@ const TimeSeriesChart1 = memo(({ url, name }) => {
                     <YAxis />
                     <Tooltip />
                     <Legend
-                        onClick={(e) => handleLineClick(e.dataKey)} // Manejar clics en la leyenda
+                        onClick={(e) => handleLineClick(e.dataKey)}
                     />
                     {Object.keys(data[0])
                         .filter((key) => key !== "year")
@@ -87,10 +84,10 @@ const TimeSeriesChart1 = memo(({ url, name }) => {
                                 type="monotone"
                                 dataKey={concepto}
                                 stroke={colors[index % colors.length]}
-                                strokeWidth={activeLine === concepto ? 4 : 2} // Aumentar grosor si está activa
-                                strokeOpacity={visibleLines[concepto] === false ? 0 : (activeLine && activeLine !== concepto ? 0.3 : 1)} // Opacidad reducida si no está activa o no visible
-                                onMouseEnter={() => setActiveLine(concepto)} // Establecer línea activa al pasar el mouse
-                                onMouseLeave={() => setActiveLine(null)} // Restablecer al salir
+                                strokeWidth={activeLine === concepto ? 4 : 2}
+                                strokeOpacity={visibleLines[concepto] === false ? 0 : (activeLine && activeLine !== concepto ? 0.3 : 1)}
+                                onMouseEnter={() => setActiveLine(concepto)}
+                                onMouseLeave={() => setActiveLine(null)}
                             />
                         ))}
                 </LineChart>

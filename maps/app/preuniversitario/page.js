@@ -6,7 +6,7 @@ export default function Home() {
         <div>
             <Header />
             <SubHeader actual={'preuniversitario'} />
-            <AnalysisCarousel />
+            <AnalysisCarousel pieChartUrl={'data/general/18.3-asistencia-promedio-en-los-circulos-infantiles.csv'} />
         </div>
     );
 }
