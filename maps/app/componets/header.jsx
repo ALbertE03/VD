@@ -1,38 +1,60 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import './header.css';
 
 function Header() {
+    const pathname = usePathname();
+
+    const provinces = [
+        { path: '/pr', name: 'Pinar Del Rio' },
+        { path: '/art', name: 'Artemisa' },
+        { path: '/lh', name: 'La Habana' },
+        { path: '/may', name: 'Mayabeque' },
+        { path: '/mtz', name: 'Matanzas' },
+        { path: '/cfg', name: 'Cienfuegos' },
+        { path: '/vc', name: 'Villa Clara' },
+        { path: '/ss', name: 'Sancti Spíritus' },
+        { path: '/ca', name: 'Ciego de Ávila' },
+        { path: '/cmg', name: 'Camagüey' },
+        { path: '/t', name: 'Las Tunas' },
+        { path: '/gr', name: 'Granma' },
+        { path: '/h', name: 'Holguín' },
+        { path: '/sc', name: 'Santiago De Cuba' },
+        { path: '/gtm', name: 'Guantánamo' },
+        { path: '/ij', name: 'Isla De La Juventud' },
+    ];
+
+    const isProvinceRoute = provinces.some((province) => province.path === pathname);
+
     return (
         <header>
             <div className="title">
                 <h1>Educación en Cuba</h1>
             </div>
             <nav>
-                <Link href="gene" data-content="general">General</Link>
+                {isProvinceRoute && (
+                    <Link href="/gene" data-content="general">General</Link>
+                )}
                 <div className="dropdown">
-                    <button className="dropdown-toggle">Provincial &#9662;</button>
-                    <div className="dropdown-content">
-                        <Link href="pr" data-content="pr">Pinar Del Rio</Link>
-                        <Link href="art" data-content="Arte">Artemisa</Link>
-                        <Link href="lh" data-content="LH">La Habana</Link>
-                        <Link href="may" data-content="Maya">Mayabeque</Link>
-                        <Link href="mtz" data-content="Mtz">Matanzas</Link>
-                        <Link href="cfg" data-content="Cfg">Cienfuegos</Link>
-                        <Link href="vc" data-content="VC">Villa Clara</Link>
-                        <Link href="ss" data-content="SS">Sancti Spíritus</Link>
-                        <Link href="ca" data-content="CAv">Ciego de Ávila</Link>
-                        <Link href="cmg" data-content="Cmg">Camagüey</Link>
-                        <Link href="t" data-content="LT">Las Tunas</Link>
-                        <Link href="gr" data-content="Gr">Granma</Link>
-                        <Link href="h" data-content="Hol">Holguín</Link>
-                        <Link href="sc" data-content="SC">Santiago De Cuba</Link>
-                        <Link href="gtm" data-content="gtm">Guantánamo</Link>
-                        <Link href="ij" data-content="ij">Isla De La Juventud</Link>
+                    <button className="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                        Provincial &#9662;
+                    </button>
+                    <div className="dropdown-content" role="menu">
+                        {provinces.map((province) => (
+                            <Link
+                                key={province.path}
+                                href={province.path}
+                                data-content={province.path.replace('/', '')}
+                                role="menuitem"
+                            >
+                                {province.name}
+                            </Link>
+                        ))}
                     </div>
                 </div>
             </nav>
-            <hr />
-
         </header>
     );
 }

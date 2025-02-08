@@ -1,0 +1,26 @@
+.menu {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+   background-color: #CCC5B7;
+    padding: 10px;
+}
+
+.menuButton {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    color: #6b5b4b;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+.menuButton:hover {
+    color: #000;
+}
+
+.menuButton.active {
+    color: #000;
+    border-bottom: 2px solid #000;
+}
