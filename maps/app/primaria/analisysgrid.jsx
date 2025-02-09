@@ -12,7 +12,7 @@ import * as d3 from 'd3';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
+import InteractiveChart from './InteractiveChart';
 const COLORS = ["#0088FE"];
 
 const ChartComponent = ({ title, data, chartType: Chart, children }) => (
@@ -169,23 +169,12 @@ Madres beneficiadas,95694,101530,110779,131816,136557,145248,138502,140518,14213
                                 availableYears={availableYears}
                             />
                         </div>
-
-                        <ChartComponent title="Matrícula Final (Serie de Tiempo)" data={transformDataForLineAndArea('Matrícula final')} chartType={LineChart}>
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="year" />
-                            <YAxis />
-                            <Tooltip
-                                contentStyle={{ backgroundColor: "#8884d8", color: "white" }}
-                                labelStyle={{ fontWeight: "bold", color: "white" }}
-                                formatter={(value) => [`${value}`, 'Valor']}
-                                labelFormatter={(label) => `Año: ${label}`}
-                            />
-                            <Legend />
-                            <Line type="monotone" dataKey="value" stroke={COLORS[0]} />
-                        </ChartComponent>
-
-                        <PieChartComponent url={pieChartUrl} />
-
+                        <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
+                            <InteractiveChart />
+                        </div>
+                        <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
+                            <PieChartComponent url={pieChartUrl} />
+                        </div>
                         <ChartComponent title="Asistencia Promedio Anual (Serie de Tiempo)" data={transformDataForLineAndArea('Asistencia promedio anual')} chartType={AreaChart}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="year" />

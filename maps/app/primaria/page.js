@@ -1,6 +1,6 @@
 import Header from "../componets/header";
 import SubHeader from "../componets/subHeader";
-import AnalysisCarousel from "../componets/analisysgrid";
+import AnalysisCarousel from "./analisysgrid";
 export default function Home() {
     return (
         <div>

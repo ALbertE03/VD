@@ -12,7 +12,7 @@ import * as d3 from 'd3';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
+import InteractiveChart from './InteractiveChart';
 const COLORS = ["#0088FE"];
 
 const ChartComponent = ({ title, data, chartType: Chart, children }) => (
@@ -162,7 +162,7 @@ Madres beneficiadas,95694,101530,110779,131816,136557,145248,138502,140518,14213
                 <SwiperSlide>
                     <div className="grid grid-cols-2 grid-rows-2 gap-4">
                         {/* Gráfico de barras: Círculos Infantiles */}
-                        <div className="p-6 bg-white border border-gray-200 rounded-lg shadow-md">
+                        <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
                             <h2 className="text-xl font-semibold mb-4">Círculos Infantiles (Todos los Años)</h2>
                             <BarChartAllYears
                                 data={data.filter(d => d.name === 'Círculos infantiles')}
@@ -171,33 +171,17 @@ Madres beneficiadas,95694,101530,110779,131816,136557,145248,138502,140518,14213
                         </div>
 
                         {/* Gráfico de líneas: Matrícula Final */}
-                        <div className="p-6 bg-white border border-gray-200 rounded-lg shadow-md">
-                            <ChartComponent
-                                title="Matrícula Final (Serie de Tiempo)"
-                                data={transformDataForLineAndArea('Matrícula final')}
-                                chartType={LineChart}
-                            >
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="year" />
-                                <YAxis />
-                                <Tooltip
-                                    contentStyle={{ backgroundColor: "#8884d8", color: "white" }}
-                                    labelStyle={{ fontWeight: "bold", color: "white" }}
-                                    formatter={(value) => [`${value}`, 'Valor']}
-                                    labelFormatter={(label) => `Año: ${label}`}
-                                />
-                                <Legend />
-                                <Line type="monotone" dataKey="value" stroke={COLORS[0]} />
-                            </ChartComponent>
+                        <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
+                            <InteractiveChart />
                         </div>
 
                         {/* Gráfico de pastel */}
-                        <div className="p-6 bg-white border border-gray-200 rounded-lg shadow-md">
+                        <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
                             <PieChartComponent url={pieChartUrl} />
                         </div>
 
                         {/* Gráfico de área: Asistencia Promedio Anual */}
-                        <div className="p-6 bg-white border border-gray-200 rounded-lg shadow-md">
+                        <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
                             <ChartComponent
                                 title="Asistencia Promedio Anual (Serie de Tiempo)"
                                 data={transformDataForLineAndArea('Asistencia promedio anual')}

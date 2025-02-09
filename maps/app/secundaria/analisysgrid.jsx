@@ -12,7 +12,7 @@ import * as d3 from 'd3';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
+import InteractiveChart from './InteractiveChart';
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28"]; // Colores para Urbana, Rural y Nivel Económicamente Activo
 const ChartComponent = ({ title, data, chartType: Chart, children }) => (
     <div className="p-8">
