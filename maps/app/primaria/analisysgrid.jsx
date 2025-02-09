@@ -30,9 +30,7 @@ const ChartComponent = ({ title, data, chartType: Chart, children }) => (
         </ResponsiveContainer>
     </div>
 );
-const MetricsComponent = ({ url }) => {
 
-};
 const BarChartComponent = memo(({ url }) => {
     const [data, setData] = useState([]);
 
