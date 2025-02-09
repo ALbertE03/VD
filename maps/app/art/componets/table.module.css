@@ -1,0 +1,92 @@
+
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto; 
+  margin-top: 0px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+.styledTable {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+
+.styledTable th {
+  background-color: #575757;
+  color: white;
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.styledTable td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e0e0e0;
+  color: #333;
+}
+
+
+.styledTable tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.styledTable tbody tr:hover {
+  background-color: #f1f1f1;
+  transition: background-color 0.3s ease;
+}
+
+.loading,
+.error {
+  padding: 16px;
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+}
+
+.error {
+  color: #ff4d4f;
+}
+
+.pagination {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.pagination button {
+  padding: 8px 16px;
+  margin: 0 5px;
+  background-color: #575757;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+}
+
+.pagination span {
+  font-size: 16px;
+  margin: 0 10px;
+}
+
+
+.filterContainer {
+  margin-bottom: 10px;
+}
+
+.filterInput {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
