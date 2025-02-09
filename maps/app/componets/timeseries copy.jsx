@@ -29,17 +29,23 @@ const TimeSeriesChart1 = memo(({ url, name }) => {
                     "Obrero calificado",
                     "Superior",
                     'Matrícula inicial',
-                    'Graduados'
+                    'Graduados',
+                    'Ciencias técnicas',
+                    'Ciencias naturales y matemáticas',
+                    'Ciencias agropecuarias',
+                    'Ciencias económicas',
+                    'Ciencias sociales y humanísticas',
+                    'Ciencias Pedagógicas',
+                    'Ciencias médicas', 'Ciencias de la Cultura física y el Deporte', 'Ciencias del Arte'
                 ];
 
-                // Filtrar solo los conceptos deseados
                 const filteredData = rawData.filter((row) => {
                     const concepto = row.CONCEPTO.replace(/"/g, '').trim();
                     return conceptosDeseados.includes(concepto);
                 });
 
 
-                // Si no hay datos después del filtrado, mostrar un mensaje
+
                 if (filteredData.length === 0) {
                     console.error("No se encontraron datos para los conceptos especificados.");
                     return;
@@ -54,8 +60,6 @@ const TimeSeriesChart1 = memo(({ url, name }) => {
                     });
                     return newRow;
                 });
-
-                console.log(formattedData);
 
                 const years = Object.keys(formattedData[0]).filter((key) => key !== "CONCEPTO");
                 const transformedData = years.map((year) => {
