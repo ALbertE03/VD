@@ -104,5 +104,5 @@ const PieChartComponent = memo(({ url }) => {
         </div>
     );
 });
-
+PieChartComponent.displayName = 'PieChartComponent';
 export default PieChartComponent;

@@ -210,5 +210,5 @@ Madres beneficiadas,95694,101530,110779,131816,136557,145248,138502,140518,14213
         </div>
     );
 };
-
+AnalysisCarousel.displayName = 'AnalysisCarousel';
 export default AnalysisCarousel;

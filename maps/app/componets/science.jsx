@@ -128,5 +128,5 @@ const EducationLevelChart = ({ url }) => {
         </div>
     );
 };
-
+EducationLevelChart.displayName = 'EducationLevelChart';
 export default EducationLevelChart;

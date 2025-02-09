@@ -24,5 +24,5 @@ const Expander = memo(({ title, children, s }) => {
         </div>
     );
 });
-
+Expander.displayName = 'Expander';
 export default Expander;

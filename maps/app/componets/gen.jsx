@@ -52,5 +52,5 @@ const StackedAreaChart = ({ jsonUrl }) => {
         </div>
     );
 };
-
+StackedAreaChart.displayName = 'StackedAreaChart';
 export default StackedAreaChart;

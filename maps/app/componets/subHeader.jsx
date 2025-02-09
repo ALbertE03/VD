@@ -27,5 +27,5 @@ const SubHeader = ({ actual }) => {
         </nav>
     );
 };
-
+SubHeader.displayName = 'SubHeader';
 export default SubHeader;

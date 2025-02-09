@@ -148,5 +148,5 @@ const TimeSeriesChart1 = memo(({ url, name }) => {
         </div>
     );
 });
-
+TimeSeriesChart1.displayName = 'TimeSeriesChart1';
 export default TimeSeriesChart1;

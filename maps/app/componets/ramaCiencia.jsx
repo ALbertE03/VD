@@ -153,5 +153,5 @@ const LineChartComponent = memo(({ urlGeneral, urlMujeres }) => {
         </div>
     );
 });
-
+LineChartComponent.displayName = 'LineChartComponent';
 export default LineChartComponent;

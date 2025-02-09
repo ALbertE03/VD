@@ -77,5 +77,5 @@ const GroupedBarChart = ({ url, name }) => {
             </ResponsiveContainer></div>
     );
 };
-
+GroupedBarChart.displayName = 'GroupedBarChart';
 export default GroupedBarChart;

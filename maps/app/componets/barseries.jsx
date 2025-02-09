@@ -79,5 +79,5 @@ const BarChartComponent = memo(({ url }) => {
         </div>
     );
 });
-
+BarChartComponent.displayName = 'BarChartComponent';
 export default BarChartComponent;
