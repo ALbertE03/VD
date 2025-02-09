@@ -52,75 +52,89 @@ const BarChartAllYears = ({ data, availableYears }) => {
     );
 };
 
-const PieChartComponent = memo(({ url }) => {
+
+const BarChartComponent = memo(({ url }) => {
     const [data, setData] = useState([]);
-    const [years, setYears] = useState([]);
-    const [selectedYear, setSelectedYear] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const rawData = await d3.csv(url);
-                const availableYears = Object.keys(rawData[0]).filter(key => key !== "CONCEPTO");
-                setYears(availableYears);
-                setSelectedYear(availableYears[0]);
+                const conceptosDeseados = ['Superior'];
 
-                const transformData = (year) => rawData
-                    .filter(row => row.CONCEPTO !== "Total")
-                    .map(row => ({ name: row.CONCEPTO, value: +row[year] || 0 }))
-                    .filter(item => item.value > 0);
 
-                setData(transformData(availableYears[0]));
+                const filteredData = rawData.filter((row) => {
+                    const concepto = row.CONCEPTO.replace(/"/g, '').trim();
+                    return conceptosDeseados.includes(concepto);
+                });
+
+                if (filteredData.length === 0) {
+                    console.error("No se encontraron datos para los conceptos especificados.");
+                    return;
+                }
+
+                const formattedData = filteredData.map((row) => {
+                    const newRow = { CONCEPTO: row.CONCEPTO };
+                    Object.keys(row).forEach((key) => {
+                        if (key !== "CONCEPTO") {
+                            newRow[key] = Math.round(+row[key] || 0);
+                        }
+                    });
+                    return newRow;
+                });
+
+
+                const years = Object.keys(formattedData[0]).filter((key) => key !== "CONCEPTO");
+                const transformedData = years.map((year) => {
+                    const yearData = { year };
+                    formattedData.forEach((row) => {
+                        if (row[year] !== 0) {
+                            yearData[row.CONCEPTO] = row[year];
+                        }
+                    });
+                    return yearData;
+                });
+
+                console.log(transformedData);
+                setData(transformedData);
             } catch (error) {
-                console.error("Error loading data:", error);
+                console.error("Error al cargar los datos:", error);
             }
         };
+
         fetchData();
     }, [url]);
 
-    const handleYearChange = (event) => {
-        const year = event.target.value;
-        setSelectedYear(year);
-        d3.csv(url).then(rawData => {
-            const updatedData = rawData
-                .filter(row => row.CONCEPTO !== "Total")
-                .map(row => ({ name: row.CONCEPTO, value: +row[year] || 0 }))
-                .filter(item => item.value > 0);
-            setData(updatedData);
-        });
-    };
+    if (data.length === 0) {
+        return <p>Cargando datos...</p>;
+    }
 
     return (
-        <div className="w-full flex justify-center items-center h-[400px]">
-            <div className="flex justify-center items-center">
-                <ResponsiveContainer width={350} height={350}>
-                    <PieChart>
-                        <Pie data={data} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={120} label>
-                            {data.map((entry, index) => (
-                                <Cell key={entry.name} fill={COLORS[index % COLORS.length]} />
-                            ))}
-                        </Pie>
-                        <Tooltip />
-                        <Legend />
-                    </PieChart>
-                </ResponsiveContainer>
-            </div>
-            <div className="ml-6">
-                <label className="font-semibold block text-center mb-2">Seleccionar Año:</label>
-                <select
-                    className="border border-gray-300 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    value={selectedYear}
-                    onChange={handleYearChange}
+        <div className="p-6">
+            <h1 className="text-2xl font-bold mb-6">Personal docente</h1>
+            <ResponsiveContainer width="90%" height={400}>
+                <BarChart
+                    data={data}
+                    layout="vertical"
+                    margin={{ left: 30, right: 30 }}
                 >
-                    {years.map(year => (
-                        <option key={year} value={year}>{year}</option>
-                    ))}
-                </select>
-            </div>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis type="number" />
+                    <YAxis type="category" dataKey="year" />
+                    <Tooltip />
+                    <Legend />
+                    <Bar
+                        dataKey="Superior"
+                        fill="#8884d8"
+                        name="Superior"
+                        key="Superior"
+                    />
+                </BarChart>
+            </ResponsiveContainer>
         </div>
     );
 });
-PieChartComponent.displayName = 'PieChartComponent';
+BarChartComponent.displayName = 'BarChartComponent';
 const AnalysisCarousel = ({ pieChartUrl }) => {
     const [data, setData] = useState([]);
     const [availableYears, setAvailableYears] = useState([]);
@@ -160,13 +174,13 @@ Madres beneficiadas,95694,101530,110779,131816,136557,145248,138502,140518,14213
         <div className="w-full p-4">
             <Swiper slidesPerView={1} navigation pagination={{ clickable: true }} modules={[Navigation, Pagination]}>
                 <SwiperSlide>
-                    <div className="grid grid-cols-2 grid-rows-2 gap-4">
+                    <div className="grid grid-cols-2 gap-4">
                         {/* Gráfico de barras: Círculos Infantiles */}
                         <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
                             <h2 className="text-xl font-semibold mb-4">Círculos Infantiles (Todos los Años)</h2>
-                            <BarChartAllYears
-                                data={data.filter(d => d.name === 'Círculos infantiles')}
-                                availableYears={availableYears}
+                            <BarChartComponent
+                                url={pieChartUrl}
+
                             />
                         </div>
 
@@ -176,11 +190,12 @@ Madres beneficiadas,95694,101530,110779,131816,136557,145248,138502,140518,14213
                         </div>
 
                         {/* Gráfico de pastel */}
-                        <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
+                        {/*<div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
                             <PieChartComponent url={pieChartUrl} />
                         </div>
 
                         {/* Gráfico de área: Asistencia Promedio Anual */}
+                        {/*
                         <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
                             <ChartComponent
                                 title="Asistencia Promedio Anual (Serie de Tiempo)"
@@ -199,7 +214,7 @@ Madres beneficiadas,95694,101530,110779,131816,136557,145248,138502,140518,14213
                                 <Legend />
                                 <Area type="monotone" dataKey="value" stroke={COLORS[0]} fill={COLORS[0]} fillOpacity={0.3} />
                             </ChartComponent>
-                        </div>
+    </div>*/}
                     </div>
                 </SwiperSlide>
             </Swiper>

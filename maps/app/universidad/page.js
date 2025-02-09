@@ -7,7 +7,7 @@ export default function Home() {
         <div>
             <Header />
             <SubHeader actual={'universidad'} />
-            <AnalysisCarousel pieChartUrl={'/data/general/18.3-asistencia-promedio-en-los-circulos-infantiles.csv'} />
+            <AnalysisCarousel pieChartUrl={'/data/general/18.5-escuelas-por-educaciones-.csv'} />
         </div>
     );
 }
