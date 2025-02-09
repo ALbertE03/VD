@@ -162,12 +162,15 @@ Madres beneficiadas,95694,101530,110779,131816,136557,145248,138502,140518,14213
             <Swiper slidesPerView={1} navigation pagination={{ clickable: true }} modules={[Navigation, Pagination]}>
                 <SwiperSlide>
                     <div className="grid grid-cols-2 grid-rows-2 gap-4">
-                        <div className="p-8">
-                            <h2 className="text-xl font-semibold mb-4">Círculos Infantiles (Todos los Años)</h2>
-                            <BarChartAllYears
-                                data={data.filter(d => d.name === 'Círculos infantiles')}
-                                availableYears={availableYears}
-                            />
+                        <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
+                            <div className="p-8">
+
+                                <h2 className="text-xl font-semibold mb-4">Círculos Infantiles (Todos los Años)</h2>
+                                <BarChartAllYears
+                                    data={data.filter(d => d.name === 'Círculos infantiles')}
+                                    availableYears={availableYears}
+                                />
+                            </div>
                         </div>
                         <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
                             <InteractiveChart />
@@ -175,19 +178,21 @@ Madres beneficiadas,95694,101530,110779,131816,136557,145248,138502,140518,14213
                         <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
                             <PieChartComponent url={pieChartUrl} />
                         </div>
-                        <ChartComponent title="Asistencia Promedio Anual (Serie de Tiempo)" data={transformDataForLineAndArea('Asistencia promedio anual')} chartType={AreaChart}>
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="year" />
-                            <YAxis />
-                            <Tooltip
-                                contentStyle={{ backgroundColor: "#8884d8", color: "white" }}
-                                labelStyle={{ fontWeight: "bold", color: "white" }}
-                                formatter={(value) => [`${value}`, 'Valor']}
-                                labelFormatter={(label) => `Año: ${label}`}
-                            />
-                            <Legend />
-                            <Area type="monotone" dataKey="value" stroke={COLORS[0]} fill={COLORS[0]} fillOpacity={0.3} />
-                        </ChartComponent>
+                        <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
+                            <ChartComponent title="Asistencia Promedio Anual (Serie de Tiempo)" data={transformDataForLineAndArea('Asistencia promedio anual')} chartType={AreaChart}>
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <XAxis dataKey="year" />
+                                <YAxis />
+                                <Tooltip
+                                    contentStyle={{ backgroundColor: "#8884d8", color: "white" }}
+                                    labelStyle={{ fontWeight: "bold", color: "white" }}
+                                    formatter={(value) => [`${value}`, 'Valor']}
+                                    labelFormatter={(label) => `Año: ${label}`}
+                                />
+                                <Legend />
+                                <Area type="monotone" dataKey="value" stroke={COLORS[0]} fill={COLORS[0]} fillOpacity={0.3} />
+                            </ChartComponent>
+                        </div>
                     </div>
                 </SwiperSlide>
             </Swiper>
