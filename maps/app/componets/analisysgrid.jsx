@@ -109,6 +109,7 @@ const MultiLineChartComponent = memo(({ url }) => {
         </div>
     );
 });
+MultiLineChartComponent.displayName = 'MultiLineChartComponent';
 const AnalysisCarousel = ({ pieChartUrl }) => {
     const [data, setData] = useState([]);
     const [availableYears, setAvailableYears] = useState([]);

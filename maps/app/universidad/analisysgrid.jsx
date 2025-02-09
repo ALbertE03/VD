@@ -120,6 +120,7 @@ const PieChartComponent = memo(({ url }) => {
         </div>
     );
 });
+PieChartComponent.displayName = 'PieChartComponent';
 const AnalysisCarousel = ({ pieChartUrl }) => {
     const [data, setData] = useState([]);
     const [availableYears, setAvailableYears] = useState([]);
