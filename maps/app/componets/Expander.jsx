@@ -12,7 +12,7 @@ const Expander = memo(({ title, children, s }) => {
     return (
         <div className={styles.expanderContainer}>
             <div className={styles.expanderHeader} onClick={toggleExpander}>
-                <h3>{title}</h3>
+                <h3 className="">{title}</h3>
                 <span className={styles.arrow}>{isExpanded ? "▲" : "▼"}</span>
             </div>
             <div

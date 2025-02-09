@@ -2,25 +2,35 @@
     display: flex;
     justify-content: space-around;
     margin-bottom: 20px;
-   background-color: #CCC5B7;
-    padding: 10px;
+    background-color: #CCC5B7;
+    padding: 15px;
+    border-radius: 12px;
+    color: #3E3C3C;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .menuButton {
     background-color: transparent;
     border: none;
     font-size: 16px;
+    font-weight: 500;
     color: #6b5b4b;
     padding: 10px 20px;
     cursor: pointer;
-    transition: color 0.3s, border-bottom 0.3s;
+    transition: all 0.3s ease;
+
+    border-radius: 8px;
+
 }
 
 .menuButton:hover {
     color: #000;
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .menuButton.active {
     color: #000;
+    font-weight: 600;
+    background-color: rgba(0, 0, 0, 0.1);
     border-bottom: 2px solid #000;
 }

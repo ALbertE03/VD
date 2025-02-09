@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from 'recharts';
 import * as d3 from 'd3';
 import React, { memo } from 'react';
+
 const BarChartComponent = memo(({ url }) => {
     const [data, setData] = useState([]);
     const [average, setAverage] = useState(0);
@@ -11,7 +12,6 @@ const BarChartComponent = memo(({ url }) => {
         const fetchData = async () => {
             try {
                 const rawData = await d3.csv(url);
-
 
                 const totalRow = rawData.find(row => row.CONCEPTO?.trim() === "Total");
 
@@ -46,20 +46,24 @@ const BarChartComponent = memo(({ url }) => {
 
     return (
         <div className="p-6">
-            <h1 className="text-2xl font-bold mb-6">personal docente frente al aula</h1>
+            <h1 className="text-2xl font-bold mb-6">Personal docente frente al aula</h1>
             <ResponsiveContainer width="90%" height={400}>
-                <BarChart data={data}>
+                <BarChart
+                    data={data}
+                    layout="vertical"
+                    margin={{ left: 30, right: 30 }}
+                >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="year" />
-                    <YAxis />
+                    <XAxis type="number" />
+                    <YAxis type="category" dataKey="year" />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="value" fill="#8884d8" />
+                    <Bar dataKey="value" fill="#8884d8" /> {/* Barra horizontal */}
                     <ReferenceLine
-                        y={average}
+                        x={average}
                         label={{
                             value: `Media: ${average.toFixed(0)}`,
-                            position: 'insideTopRight',
+                            position: 'insideTop',
                             fill: 'black',
                             fontSize: 14,
                             fontWeight: 'bold',

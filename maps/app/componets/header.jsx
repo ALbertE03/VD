@@ -8,7 +8,7 @@ function Header() {
     const pathname = usePathname();
 
     const provinces = [
-        { path: '/pr', name: 'Pinar Del Rio' },
+        { path: '/pr', name: 'Pinar del Rio' },
         { path: '/art', name: 'Artemisa' },
         { path: '/lh', name: 'La Habana' },
         { path: '/may', name: 'Mayabeque' },
@@ -39,7 +39,7 @@ function Header() {
             </div>
             <nav>
                 {isProvinceRoute && (
-                    <Link href="/gene" data-content="general">General</Link>
+                    <Link href="/" data-content="general">General</Link>
                 )}
                 <div className="dropdown">
                     <button className="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
