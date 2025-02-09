@@ -15,7 +15,7 @@ import 'swiper/css/pagination';
 import InteractiveChart from './InteractiveChart';
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28"]; // Colores para Urbana, Rural y Nivel Económicamente Activo
 const ChartComponent = ({ title, data, chartType: Chart, children }) => (
-    <div className="p-8">
+    <div className="p-8 w-full flex flex-col items-center">
         <h2 className="text-xl font-semibold mb-4">{title}</h2>
         <ResponsiveContainer width="100%" height={400}>
             <Chart data={data}>
@@ -131,8 +131,9 @@ const AnalysisCarousel = () => {
 graduados total,153139,174423,166212,159857,150566,141334,122543,108309,101650,93834,94537,114466,123829,128878,150679,138957,150967,160304,162023,167382,154744,144062,140273,134626,132699,125257,134708,132456,130844,125185,120017,122375,119664,112528,112528,98908,99031
 Urbana,2350,2315,2306,2307,2278,2272,2266,2327,2286,2258,2260,2275,2274,2269,2261,2268,2281,2330,2336,2335,2332,2337,2334,2336,2296,2213,2177,2132,2113,2097,2083,2084,2081,2080,2081,2076,2076
 Rural,7837,7522,7311,7215,7139,7103,7080,7041,7154,7167,7160,7206,7213,7132,7099,7091,7077,7017,6693,6670,6702,6710,6688,6663,5919,5031,4876,4789,4729,4730,4754,4779,4806,4828,4840,4849,4864`;
-        const csvData4 = `CONCEPTO,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022
+        const csvData4 = `CONCEPTO,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015
         semi internos,315695,313422,309207,316929,323353,339405,344576,354306,365848,360571,361339,367407,369147,372511,372013,369574,363273,359422,368974,378259,389218,397272,397008,400592,391297,372807,353799,344367,338636,331587,333702`;
+
         const csvData2 = `CONCEPTO,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022
 nivel educacional de la población,1400,1449,1416,1423,1435,1425,1409,1443,1346,1353,1353,1264,1229,1198,1139,1103,1106,1128,1115,995,993,987,999,0,941`;
 
@@ -197,6 +198,9 @@ becarios,33361,31839,29282,24743,22470,19885,14064,10986,10382,9704,9593,8987,97
                 <SwiperSlide>
                     <div className="grid grid-cols-2 grid-rows-2 gap-4">
                         <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
+                            <InteractiveChart />
+                        </div>
+                        <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
                             <div className="p-8">
                                 <h2 className="text-xl font-semibold mb-4">Urbana vs Rural (Todos los Años)</h2>
                                 <LineChartMultiple
@@ -205,9 +209,28 @@ becarios,33361,31839,29282,24743,22470,19885,14064,10986,10382,9704,9593,8987,97
                                 />
                             </div>
                         </div>
-                        <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
+
+                        {/*<div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
+                            <div className="p-8">
+                                <h2 className="text-xl font-semibold mb-4">Becarios (1985-2022)</h2>
+                                <BarChartComponent
+                                    data={data3}
+                                    availableYears={availableYears}
+                                />
+                            </div>
+                        </div>
+                       <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
+                            <div className="p-8">
+                                <h2 className="text-xl font-semibold mb-4">Semi Internos</h2>
+                                <AreaChartComponent
+                                    data={data4}
+                                    availableYears={availableYears}
+                                />
+                            </div>
+    </div>*/}
+                        <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md col-span-2">
                             <ChartComponent
-                                title="Nivel Educacional de la Población (1998-2022)"
+                                title="Nivel Educacional de la Población economicamente activa"
                                 data={transformDataForLine(data2, 'nivel educacional de la población')}
                                 chartType={LineChart}
                             >
@@ -223,24 +246,6 @@ becarios,33361,31839,29282,24743,22470,19885,14064,10986,10382,9704,9593,8987,97
                                 <Legend />
                                 <Line type="monotone" dataKey="value" stroke={COLORS[2]} />
                             </ChartComponent>
-                        </div>
-                        <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
-                            <div className="p-8">
-                                <h2 className="text-xl font-semibold mb-4">Becarios (1985-2022)</h2>
-                                <BarChartComponent
-                                    data={data3}
-                                    availableYears={availableYears}
-                                />
-                            </div>
-                        </div>
-                        <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
-                            <div className="p-8">
-                                <h2 className="text-xl font-semibold mb-4">Semi Internos (1985-2022)</h2>
-                                <AreaChartComponent
-                                    data={data4}
-                                    availableYears={availableYears}
-                                />
-                            </div>
                         </div>
                     </div>
                 </SwiperSlide>
