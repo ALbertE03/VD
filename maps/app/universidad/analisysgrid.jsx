@@ -16,7 +16,7 @@ import 'swiper/css/pagination';
 const COLORS = ["#0088FE"];
 
 const ChartComponent = ({ title, data, chartType: Chart, children }) => (
-    <div className="p-8 w-full flex flex-col items-center h-[500px]">
+    <div className="p-8">
         <h2 className="text-xl font-semibold mb-4">{title}</h2>
         <ResponsiveContainer width="100%" height={400}>
             <Chart data={data}>
@@ -51,61 +51,72 @@ const BarChartAllYears = ({ data, availableYears }) => {
         </ResponsiveContainer>
     );
 };
-const MultiLineChartComponent = memo(({ url }) => {
+
+const PieChartComponent = memo(({ url }) => {
     const [data, setData] = useState([]);
-    const [concepts, setConcepts] = useState([]);
+    const [years, setYears] = useState([]);
+    const [selectedYear, setSelectedYear] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const rawData = await d3.csv(url);
-                const years = Object.keys(rawData[0]).filter(key => key !== "CONCEPTO");
+                const availableYears = Object.keys(rawData[0]).filter(key => key !== "CONCEPTO");
+                setYears(availableYears);
+                setSelectedYear(availableYears[0]);
 
-                const transformedData = years.map(year => {
-                    const entry = { year };
-                    rawData.forEach(row => {
-                        if (row.CONCEPTO !== "Total") {
-                            entry[row.CONCEPTO] = +row[year] || 0;
-                        }
-                    });
-                    return entry;
-                });
+                const transformData = (year) => rawData
+                    .filter(row => row.CONCEPTO !== "Total")
+                    .map(row => ({ name: row.CONCEPTO, value: +row[year] || 0 }))
+                    .filter(item => item.value > 0);
 
-                const uniqueConcepts = rawData.map(row => row.CONCEPTO).filter(concept => concept !== "Total");
-                setConcepts(uniqueConcepts);
-                setData(transformedData);
+                setData(transformData(availableYears[0]));
             } catch (error) {
                 console.error("Error loading data:", error);
             }
         };
-
         fetchData();
     }, [url]);
-    const COLORS = ["#8884d8", "#82ca9d", "#ffc658", "#d62728", "#2ca02c", "#9467bd", "#ff7f0e"];
+
+    const handleYearChange = (event) => {
+        const year = event.target.value;
+        setSelectedYear(year);
+        d3.csv(url).then(rawData => {
+            const updatedData = rawData
+                .filter(row => row.CONCEPTO !== "Total")
+                .map(row => ({ name: row.CONCEPTO, value: +row[year] || 0 }))
+                .filter(item => item.value > 0);
+            setData(updatedData);
+        });
+    };
 
     return (
-        <div className="w-full flex flex-col items-center h-[500px]">
-            <h2 className="text-xl font-semibold mb-4">asistencia promedio a los circulos infantiles</h2>
-            <ResponsiveContainer width="100%" height={400}>
-                <LineChart data={data}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="year" label={{ value: "Año", position: "insideBottom", offset: -5 }} />
-                    <YAxis label={{ value: "Valor", angle: -90, position: "insideLeft" }} />
-                    <Tooltip />
-                    <Legend />
-                    {concepts.map((concept, index) => (
-                        <Line
-                            key={concept}
-                            type="monotone"
-                            dataKey={concept}
-                            stroke={COLORS[index % COLORS.length]}
-                            strokeWidth={2}
-                            dot={{ r: 3 }}
-                            activeDot={{ r: 6 }}
-                        />
+        <div className="w-full flex justify-center items-center h-[400px]">
+            <div className="flex justify-center items-center">
+                <ResponsiveContainer width={350} height={350}>
+                    <PieChart>
+                        <Pie data={data} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={120} label>
+                            {data.map((entry, index) => (
+                                <Cell key={entry.name} fill={COLORS[index % COLORS.length]} />
+                            ))}
+                        </Pie>
+                        <Tooltip />
+                        <Legend />
+                    </PieChart>
+                </ResponsiveContainer>
+            </div>
+            <div className="ml-6">
+                <label className="font-semibold block text-center mb-2">Seleccionar Año:</label>
+                <select
+                    className="border border-gray-300 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    value={selectedYear}
+                    onChange={handleYearChange}
+                >
+                    {years.map(year => (
+                        <option key={year} value={year}>{year}</option>
                     ))}
-                </LineChart>
-            </ResponsiveContainer>
+                </select>
+            </div>
         </div>
     );
 });
@@ -150,7 +161,7 @@ Madres beneficiadas,95694,101530,110779,131816,136557,145248,138502,140518,14213
                 <SwiperSlide>
                     <div className="grid grid-cols-2 grid-rows-2 gap-4">
                         {/* Gráfico de barras: Círculos Infantiles */}
-                        <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md w-full flex flex-col items-center ">
+                        <div className="p-6 bg-white border border-gray-200 rounded-lg shadow-md">
                             <h2 className="text-xl font-semibold mb-4">Círculos Infantiles (Todos los Años)</h2>
                             <BarChartAllYears
                                 data={data.filter(d => d.name === 'Círculos infantiles')}
@@ -159,7 +170,7 @@ Madres beneficiadas,95694,101530,110779,131816,136557,145248,138502,140518,14213
                         </div>
 
                         {/* Gráfico de líneas: Matrícula Final */}
-                        <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
+                        <div className="p-6 bg-white border border-gray-200 rounded-lg shadow-md">
                             <ChartComponent
                                 title="Matrícula Final (Serie de Tiempo)"
                                 data={transformDataForLineAndArea('Matrícula final')}
@@ -179,13 +190,13 @@ Madres beneficiadas,95694,101530,110779,131816,136557,145248,138502,140518,14213
                             </ChartComponent>
                         </div>
 
-
-                        <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
-                            <MultiLineChartComponent url={pieChartUrl} />
+                        {/* Gráfico de pastel */}
+                        <div className="p-6 bg-white border border-gray-200 rounded-lg shadow-md">
+                            <PieChartComponent url={pieChartUrl} />
                         </div>
 
                         {/* Gráfico de área: Asistencia Promedio Anual */}
-                        <div className="p-4 bg-white border border-gray-200 rounded-xl shadow-md">
+                        <div className="p-6 bg-white border border-gray-200 rounded-lg shadow-md">
                             <ChartComponent
                                 title="Asistencia Promedio Anual (Serie de Tiempo)"
                                 data={transformDataForLineAndArea('Asistencia promedio anual')}

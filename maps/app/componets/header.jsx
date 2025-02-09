@@ -23,7 +23,11 @@ function Header() {
         { path: '/h', name: 'Holguín' },
         { path: '/sc', name: 'Santiago De Cuba' },
         { path: '/gtm', name: 'Guantánamo' },
-        { path: '/ij', name: 'Isla De La Juventud' },
+        { path: '/infantil', name: 'infantiles' },
+        { path: '/secundaria', name: 'secundaria' },
+        { path: '/primaria', name: 'primaria' },
+        { path: '/preuniversitario', name: 'preuniversitario' },
+        { path: '/universidad', name: 'universidad' }
     ];
 
     const isProvinceRoute = provinces.some((province) => province.path === pathname);

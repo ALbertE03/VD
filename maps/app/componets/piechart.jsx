@@ -81,7 +81,7 @@ const PieChartComponent = memo(({ url }) => {
                 </select>
             </div>
 
-            <ResponsiveContainer width="100%" height={400}>
+            <ResponsiveContainer width="100%" height={200}>
                 <PieChart>
                     <Pie
                         data={data}

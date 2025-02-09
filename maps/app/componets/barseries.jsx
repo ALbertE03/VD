@@ -47,7 +47,7 @@ const BarChartComponent = memo(({ url }) => {
     return (
         <div className="p-6">
             <h1 className="text-2xl font-bold mb-6">personal docente frente al aula</h1>
-            <ResponsiveContainer width="100%" height={500}>
+            <ResponsiveContainer width="90%" height={400}>
                 <BarChart data={data}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="year" />
