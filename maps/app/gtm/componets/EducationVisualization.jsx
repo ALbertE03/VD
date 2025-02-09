@@ -10,8 +10,6 @@ const AreaChart = ({ data, width = 400, height = 200, title, seriesNames, colorS
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 
-    if (!data || data.length === 0) return <div>No hay datos disponibles</div>;
-
     const years = Object.keys(data[0]).filter(key => key !== "EDUCACIONES");
     const series = data.filter(d => seriesNames.includes(d.EDUCACIONES));
 
@@ -48,6 +46,7 @@ const AreaChart = ({ data, width = 400, height = 200, title, seriesNames, colorS
         }
     }, [data]);
 
+    if (!data || data.length === 0) return <div>No hay datos disponibles</div>;
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "10px" }}>
             <h4>{title}</h4>
