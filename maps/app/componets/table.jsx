@@ -66,5 +66,5 @@ const Table = memo(({ url }) => {
         </div>
     );
 });
-
+Table.displayName = 'Table';
 export default Table;

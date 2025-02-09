@@ -92,5 +92,5 @@ const Heatmap = ({ url, title, categories }) => {
         </div>
     );
 };
-
+Heatmap.displayName = 'Heatmap';
 export default Heatmap;

@@ -90,5 +90,5 @@ const InfografiaMunicipios = ({ url }) => {
         </div>
     );
 };
-
+InfografiaMunicipios.displayName = 'InfografiaMunicipios';
 export default InfografiaMunicipios;

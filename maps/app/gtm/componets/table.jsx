@@ -65,5 +65,5 @@ const Table = ({ url }) => {
         </div>
     );
 };
-
+Table.displayName = 'Table';
 export default Table;

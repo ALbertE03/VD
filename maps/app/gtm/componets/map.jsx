@@ -37,5 +37,5 @@ const GeoJSONMap = ({ geoJsonUrl, width = 800, height = 600 }) => {
 
     return <svg ref={svgRef} width={width} height={height}></svg>;
 };
-
+GeoJSONMap.displayName = 'GeoJSONMap';
 export default GeoJSONMap;

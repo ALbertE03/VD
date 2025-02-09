@@ -1,3 +1,4 @@
+'use client';
 import * as d3 from "d3";
 import { useEffect, useState, useRef } from "react";
 
@@ -174,5 +175,5 @@ const CSVLoader = () => {
 
     return data ? <Container data={data} /> : <div>Cargando datos...</div>;
 };
-
+CSVLoader.displayName = 'CSVLoader';
 export default CSVLoader;

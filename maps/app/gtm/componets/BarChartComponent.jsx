@@ -68,5 +68,5 @@ const BarChartComponent = () => {
         </ResponsiveContainer>
     );
 };
-
+BarChartComponent.displayName = 'BarChartComponent';
 export default BarChartComponent;

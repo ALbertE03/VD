@@ -182,5 +182,5 @@ const PieChartWithSelector = () => {
         </div>
     );
 };
-
+PieChartWithSelector.displayName = 'PieChartWithSelector';
 export default PieChartWithSelector;

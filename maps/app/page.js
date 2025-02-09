@@ -1,7 +1,7 @@
 
 import Header from "./componets/header";
 import BarChartComponent from './componets/barseries'
-import EducationChart from "./componets/GeneralSection";
+
 import GroupedBarChart from "./componets/GroupedBarChart";
 import TimeSeriesChart1 from "./componets/timeseries copy";
 import PieChartComponent from "./componets/piechart";

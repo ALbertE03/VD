@@ -29,5 +29,5 @@ const EducationBarChart = ({ data }) => {
         </ResponsiveContainer>
     );
 };
-
+EducationBarChart.displayName = 'EducationBarChart';
 export default EducationBarChart;

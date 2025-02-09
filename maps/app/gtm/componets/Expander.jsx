@@ -23,5 +23,5 @@ const Expander = ({ title, children, s }) => {
         </div>
     );
 };
-
+Expander.displayName = 'Expander';
 export default Expander;

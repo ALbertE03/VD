@@ -120,5 +120,5 @@ const MatriculasTable = () => {
         </div>
     );
 };
-
+MatriculasTable.displayName = 'MatriculasTable';
 export default MatriculasTable;
