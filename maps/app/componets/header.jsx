@@ -23,22 +23,23 @@ function Header() {
         { path: '/h', name: 'Holguín' },
         { path: '/sc', name: 'Santiago De Cuba' },
         { path: '/gtm', name: 'Guantánamo' },
-        { path: '/infantil', name: 'infantiles' },
-        { path: '/secundaria', name: 'secundaria' },
-        { path: '/primaria', name: 'primaria' },
-        { path: '/preuniversitario', name: 'preuniversitario' },
-        { path: '/universidad', name: 'universidad' }
+
     ];
+    const check = [{ path: '/infantil', name: 'infantiles' },
+    { path: '/secundaria', name: 'secundaria' },
+    { path: '/primaria', name: 'primaria' },
+    { path: '/preuniversitario', name: 'preuniversitario' },
+    { path: '/universidad', name: 'universidad' }]
 
     const isProvinceRoute = provinces.some((province) => province.path === pathname);
-
+    const ischeck = check.some((province) => province.path === pathname);
     return (
         <header>
             <div className="title">
                 <h1>Educación en Cuba</h1>
             </div>
             <nav>
-                {isProvinceRoute && (
+                {(isProvinceRoute || ischeck) && (
                     <Link href="/" data-content="general">General</Link>
                 )}
                 <div className="dropdown">

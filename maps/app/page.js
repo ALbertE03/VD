@@ -12,6 +12,7 @@ import EducationLevelChart from "./componets/science";
 import SubHeader from "./componets/subHeader";
 import StackedAreaChart from "./componets/gen";
 import PieChartWithSelector from "./componets/PieChartWithSelector";
+import InteractiveChart from "./componets/InteractiveChart";
 export default function Home() {
   return (
     <div>
@@ -24,8 +25,10 @@ export default function Home() {
           </Expander>
         </div>
         <div className="p-4 bg-white border border-gray-200 rounded-xl shadow-md">
-          <StackedAreaChart jsonUrl={'/data/general/7.6-nivel-educacional-de-la-poblacion-economicamente-activa-por-sexos.json'} />
+
+          <InteractiveChart />
         </div>
+
 
         <div className="p-4 bg-white border border-gray-200 rounded-xl shadow-md">
           <BarChartComponent url={'data/general/18.7-personal-docente-frente-al-aula-por-educaciones.csv'} />
@@ -47,20 +50,20 @@ export default function Home() {
 
           <PieChartWithSelector />
         </div>
-
+        <div className="p-4 bg-white border border-gray-200 rounded-xl shadow-md">
+          <StackedAreaChart jsonUrl={'/data/general/7.6-nivel-educacional-de-la-poblacion-economicamente-activa-por-sexos.json'} />
+        </div>
         {/*<div className="p-4 bg-white border border-gray-200 rounded-xl shadow-md">
                     <TimeSeriesChart url={"/data/general/18.2-matricula-final-de-los-circulos-infantiles.csv"} name={'matricula final de los circulos infantiles'} />
                 </div>*/}
 
-
-
-        <div className="p-4 bg-white border border-gray-200 rounded-xl shadow-md">
+        {/*<div className="p-4 bg-white border border-gray-200 rounded-xl shadow-md">
           <LineChartComponent urlGeneral={'/data/general/18.19-matricula-inicial-de-la-educacion-superior-por-ramas-de-la-ciencia-.csv'} urlMujeres={'/data/general/18.22-graduados-de-la-educacion-superior-por-ramas-de-la-ciencia.-mujeres-.csv'} />
         </div>
 
         <div className="p-4 bg-white border border-gray-200 rounded-xl shadow-md">
           <EducationLevelChart url={'/data/general/7.6-nivel-educacional-de-la-poblacion-economicamente-activa-mujeres.csv'} />
-        </div>
+              </div>*/}
       </div>
 
     </div>

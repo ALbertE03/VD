@@ -5,17 +5,24 @@ body {
 
 
 .title {
-    
+
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3.5rem; /* Tamaño de fuente más grande */
-    color: #3E3C3C; /* Color del texto */
-    padding: 40px 0; /* Más padding para mayor espacio alrededor */
-    background-color: #CCC5B7; /* Color de fondo */
-    text-transform: uppercase; /* Convertir texto a mayúsculas */
-    font-weight: bold; /* Texto en negrita */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra para el texto */ 
+    font-size: 3.5rem;
+    /* Tamaño de fuente más grande */
+    color: #3E3C3C;
+    /* Color del texto */
+    padding: 40px 0;
+    /* Más padding para mayor espacio alrededor */
+    background-color: #CCC5B7;
+    /* Color de fondo */
+    text-transform: uppercase;
+    /* Convertir texto a mayúsculas */
+    font-weight: bold;
+    /* Texto en negrita */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    /* Sombra para el texto */
 
 }
 
