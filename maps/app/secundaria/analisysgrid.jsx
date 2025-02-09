@@ -248,4 +248,5 @@ becarios,33361,31839,29282,24743,22470,19885,14064,10986,10382,9704,9593,8987,97
         </div>
     );
 };
+AnalysisCarousel.displayName = 'AnalysisCarousel';
 export default AnalysisCarousel;
