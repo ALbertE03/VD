@@ -30,11 +30,11 @@ function Header() {
     { path: '/primaria', name: 'primaria' },
     { path: '/preuniversitario', name: 'preuniversitario' },
     { path: '/universidad', name: 'universidad' },
-    { path: '/art/secundaria', name: 'secundaria' },
-    { path: '/art/primaria', name: 'primaria' },
-    { path: '/art/preuniversitario', name: 'preuniversitario' },
-    { path: '/art/universidad', name: 'universidad' },
-    { path: '/art/infantil', name: 'infantiles' }]
+    { path: '/art/secundaria', name: 'art-secundaria' },
+    { path: '/art/primaria', name: 'art-primaria' },
+    { path: '/art/preuniversitario', name: 'art-preuniversitario' },
+    { path: '/art/universidad', name: 'art-universidad' },
+    { path: '/art/infantil', name: 'art-infantiles' }]
 
     const isProvinceRoute = provinces.some((province) => province.path === pathname);
     const ischeck = check.some((province) => province.path === pathname);

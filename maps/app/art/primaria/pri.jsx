@@ -1,0 +1,109 @@
+'use client';
+import React from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line, PieChart, Pie, Cell } from 'recharts';
+
+const PrimaryCharts = () => {
+    // Datos para el gráfico de barras 1: Escuelas Puras y Mixtas
+    const data1 = [
+        { name: 'Puras', Cantidad: 154 },
+        { name: 'Mixtas', Cantidad: 23 },
+    ];
+
+    // Datos para el gráfico de barras 2: Primaria por Municipio
+    const data2 = [
+        { name: 'Artemisa', Cantidad: 44 },
+        { name: 'Bahia Honda', Cantidad: 17 },
+        { name: 'Manal', Cantidad: 9 },
+        { name: 'Guanajay', Cantidad: 17 },
+        { name: 'Caimito', Cantidad: 17 },
+        { name: 'Bauta', Cantidad: 17 },
+    ];
+
+    // Datos para el gráfico de líneas: Primaria y Especial por Año
+    const data3 = [
+        { name: '2018-2019', Primaria: 4610, Especial: 530 },
+        { name: '2019-2020', Primaria: 5330, Especial: 330 },
+        { name: '2020-2021', Primaria: 5309, Especial: 373 },
+        { name: '2021-2022', Primaria: 5138, Especial: 364 },
+        { name: '2022-2023', Primaria: 5213, Especial: 341 },
+    ];
+
+    // Datos para el gráfico de pastel: Distribución por Zona
+    const data4 = [
+        { name: 'Urbana', value: 24919 },
+        { name: 'Rural', value: 6166 },
+    ];
+
+    const COLORS = ['#7E8D85', '#D4A373'];
+
+    return (
+        <div style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
+            <h1 style={{ textAlign: 'center', color: '#403D39' }}>Gráficos de Primaria</h1>
+
+            {/* Gráfico 1: Primaria - Escuelas Puras y Mixtas */}
+            <div style={{ marginBottom: '40px' }}>
+                <h2>Primaria - Escuelas Puras y Mixtas</h2>
+                <BarChart width={600} height={300} data={data1} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="Cantidad" fill="#7E8D85" />
+                </BarChart>
+            </div>
+
+            {/* Gráfico 2: Primaria por Municipio */}
+            <div style={{ marginBottom: '40px' }}>
+                <h2>Primaria por Municipio</h2>
+                <BarChart width={600} height={300} data={data2} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="Cantidad" fill="#7E8D85" />
+                </BarChart>
+            </div>
+
+            {/* Gráfico 3: Primaria y Especial por Año */}
+            <div style={{ marginBottom: '40px' }}>
+                <h2>Primaria y Especial por Año</h2>
+                <LineChart width={600} height={300} data={data3} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Line type="monotone" dataKey="Primaria" stroke="#6B705C" />
+                    <Line type="monotone" dataKey="Especial" stroke="#D4A373" />
+                </LineChart>
+            </div>
+
+            {/* Gráfico 4: Primaria - Distribución por Zona */}
+            <div style={{ marginBottom: '40px' }}>
+                <h2>Primaria - Distribución por Zona</h2>
+                <PieChart width={600} height={300}>
+                    <Pie
+                        data={data4}
+                        cx="50%"
+                        cy="50%"
+                        labelLine={false}
+                        label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(2)}%`}
+                        outerRadius={80}
+                        fill="#8884d8"
+                        dataKey="value"
+                    >
+                        {data4.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        ))}
+                    </Pie>
+                    <Tooltip />
+                    <Legend />
+                </PieChart>
+            </div>
+        </div>
+    );
+};
+
+export default PrimaryCharts;

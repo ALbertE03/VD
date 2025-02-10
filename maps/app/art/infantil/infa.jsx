@@ -32,10 +32,10 @@ const CombinedCharts = () => {
     ];
 
     return (
-        <div className="p-6 bg-gray-100 min-h-screen grid grid-cols-2 grid-rows-2 gap-4">
+        <div className="p-4 bg-gray-100 min-h-screen grid grid-cols-2 grid-rows-2 gap-4">
 
             {/* Sección 2: Alumnos y Profesores por Municipio */}
-            <div className="bg-white p-6 rounded-xl shadow-md mb-8">
+            <div className="bg-white p-4 rounded-xl shadow-md mb-8">
                 <h2 className="text-xl font-semibold mb-4 text-[#6B705C]">Alumnos y Profesores por Municipio</h2>
                 <ResponsiveContainer width="100%" height={400}>
                     <BarChart data={municipios2.map((municipio, index) => ({
