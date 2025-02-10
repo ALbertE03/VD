@@ -55,7 +55,7 @@ const CombinedCharts = () => {
             </div>
 
             <div className="bg-white p-6 rounded-xl shadow-md mb-8">
-                <h2 className="text-xl font-semibold mb-4 text-[#403D39] text-center">Datos por Año</h2>
+                <h2 className="text-xl font-semibold mb-4 text-[#403D39] text-center">Alumnos y Profesores por Año</h2>
                 <ResponsiveContainer width="100%" height={400}>
                     <BarChart data={años.map((año, index) => ({
                         año,

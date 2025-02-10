@@ -56,7 +56,7 @@ const EstadisticasEducacion = () => {
 
                 <div className="bg-white p-6 rounded-xl shadow-md">
                     <h2 className="text-xl font-semibold mb-4 text-[#403D39] text-center">
-                        Preuniversitario por Municipio
+                        Preuniversitarios por Municipios
                     </h2>
                     <ResponsiveContainer width="100%" height={350}>
                         <BarChart data={preuniversitarioMunicipioData}>
@@ -91,7 +91,7 @@ const EstadisticasEducacion = () => {
 
                 <div className="bg-white p-6 rounded-xl shadow-md col-span-2">
                     <h2 className="text-xl font-semibold mb-4 text-[#403D39] text-center">
-                        Preuniversitario - Escuelas Puras y Mixtas
+                        Escuelas Puras y Mixtas
                     </h2>
                     <ResponsiveContainer width="100%" height={350}>
                         <BarChart data={primariaEscuelasData}>

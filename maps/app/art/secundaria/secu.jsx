@@ -79,7 +79,7 @@ const SecondaryCharts = () => {
 
                 <div className="bg-white p-6 rounded-xl shadow-md">
                     <h2 className="text-xl font-semibold mb-4 text-[#403D39] text-center">
-                        Secundaria - Escuelas Puras y Mixtas
+                        Escuelas Puras y Mixtas
                     </h2>
                     <ResponsiveContainer width="100%" height={300}>
                         <BarChart data={barData1} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -94,7 +94,7 @@ const SecondaryCharts = () => {
                 </div>
                 <div className="bg-white p-6 rounded-xl shadow-md">
                     <h2 className="text-xl font-semibold mb-4 text-[#403D39] text-center">
-                        Secundaria por Municipio
+                        Secundarias por Municipios
                     </h2>
                     <ResponsiveContainer width="100%" height={300}>
                         <BarChart data={barData2} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>

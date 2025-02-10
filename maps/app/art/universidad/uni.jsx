@@ -102,7 +102,7 @@ const EstadisticasEducacionSuperior = () => {
 
                 <div className="bg-white p-6 rounded-xl shadow-md">
                     <h2 className="text-xl font-semibold mb-4 text-[#403D39] text-center">
-                        Educación Superior - Escuelas Puras y Mixtas
+                        Escuelas Puras y Mixtas
                     </h2>
                     <ResponsiveContainer width="100%" height={400}>
                         <BarChart data={escuelasData}>

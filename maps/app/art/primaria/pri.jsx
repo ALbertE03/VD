@@ -50,7 +50,7 @@ const PrimaryCharts = () => {
     return (
         <div className="p-4 bg-[#CCC5B7] min-h-screen grid grid-cols-2 grid-rows-2 gap-6">
             <div className="bg-white p-6 rounded-xl shadow-md">
-                <h2 className="text-xl font-semibold mb-4 text-[#6B705C] text-center">Primaria - Escuelas Puras y Mixtas</h2>
+                <h2 className="text-xl font-semibold mb-4 text-[#6B705C] text-center">Escuelas Puras y Mixtas</h2>
                 <ResponsiveContainer width="100%" height={300}>
                     <BarChart data={data1} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                         <CartesianGrid strokeDasharray="3 3" />
@@ -64,7 +64,7 @@ const PrimaryCharts = () => {
             </div>
 
             <div className="bg-white p-6 rounded-xl shadow-md">
-                <h2 className="text-xl font-semibold mb-4 text-[#6B705C] text-center">Primaria por Municipio</h2>
+                <h2 className="text-xl font-semibold mb-4 text-[#6B705C] text-center">Primarias por Municipios</h2>
                 <ResponsiveContainer width="100%" height={300}>
                     <BarChart data={data2} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                         <CartesianGrid strokeDasharray="3 3" />
@@ -93,7 +93,7 @@ const PrimaryCharts = () => {
             </div>
 
             <div className="bg-white p-6 rounded-xl shadow-md">
-                <h2 className="text-xl font-semibold mb-4 text-[#6B705C] text-center">Primaria - Distribución por Zona</h2>
+                <h2 className="text-xl font-semibold mb-4 text-[#6B705C] text-center">Distribución por Zona</h2>
                 <ResponsiveContainer width="100%" height={300}>
                     <PieChart>
                         <Pie

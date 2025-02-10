@@ -177,7 +177,6 @@ Madres beneficiadas,95694,101530,110779,131816,136557,145248,138502,140518,14213
                     <div className="grid grid-cols-2 gap-4">
                         {/* Gráfico de barras: Círculos Infantiles */}
                         <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
-                            <h2 className="text-xl font-semibold mb-4">Círculos Infantiles (Todos los Años)</h2>
                             <BarChartComponent
                                 url={pieChartUrl}
 
