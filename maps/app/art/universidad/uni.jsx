@@ -62,7 +62,7 @@ const EstadisticasEducacionSuperior = () => {
 
     return (
         <div className="p-4 bg-[#CCC5B7] min-h-screen">
-            <div className="grid grid-cols-2 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-4">
                 <div className="bg-white p-6 rounded-xl shadow-md">
                     <h2 className="text-xl font-semibold mb-4 text-[#403D39] text-center">
                         Enseñanza Superior por Año

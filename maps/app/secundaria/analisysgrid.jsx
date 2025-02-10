@@ -13,7 +13,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import InteractiveChart from './InteractiveChart';
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28"]; // Colores para Urbana, Rural y Nivel Económicamente Activo
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
 const ChartComponent = ({ title, data, chartType: Chart, children }) => (
     <div className="p-8 w-full flex flex-col items-center">
         <h2 className="text-xl font-semibold mb-4">{title}</h2>
@@ -32,7 +32,6 @@ const ChartComponent = ({ title, data, chartType: Chart, children }) => (
 
 
 const LineChartMultiple = ({ data, availableYears }) => {
-    // Transformar los datos para que el eje X muestre los años y tenga dos líneas (Urbana y Rural)
     const transformedData = availableYears.map(year => ({
         year: year,
         Urbana: data.find(d => d.name === 'Urbana')[year] || 0,
@@ -55,7 +54,6 @@ const LineChartMultiple = ({ data, availableYears }) => {
 };
 
 const BarChartComponent = ({ data, availableYears }) => {
-    // Transformar los datos para que el eje X muestre los años y tenga una barra (Becarios)
     const transformedData = availableYears.map(year => ({
         year: year,
         Becarios: data.find(d => d.name === 'becarios')[year] || 0
@@ -103,27 +101,27 @@ const AreaChartComponent = ({ data, availableYears }) => {
 };
 const transformDataForLine = (data, concept) => {
     if (!data || data.length === 0) {
-        return []; // Si no hay datos, devolvemos un arreglo vacío
+        return [];
     }
 
     const conceptData = data.find(d => d.name === concept);
     if (!conceptData) {
-        return []; // Si no se encuentra el concepto, devolvemos un arreglo vacío
+        return [];
     }
 
-    // Filtrar años desde 1998 hasta 2022
+
     return Object.keys(conceptData)
         .filter(key => key !== "name" && +key >= 1998 && +key <= 2022)
         .map(year => ({
             year: year,
-            value: conceptData[year] || 0 // Usamos el valor del año o 0 si no existe
+            value: conceptData[year] || 0
         }));
 };
 const AnalysisCarousel = () => {
     const [data, setData] = useState([]);
-    const [data2, setData2] = useState([]); // Datos para el nivel educacional de la población
-    const [data3, setData3] = useState([]); // Datos para becarios
-    const [data4, setData4] = useState([]); // Datos para semi internos
+    const [data2, setData2] = useState([]);
+    const [data3, setData3] = useState([]);
+    const [data4, setData4] = useState([]);
     const [availableYears, setAvailableYears] = useState([]);
 
     useEffect(() => {
@@ -201,8 +199,8 @@ becarios,33361,31839,29282,24743,22470,19885,14064,10986,10382,9704,9593,8987,97
                             <InteractiveChart />
                         </div>
                         <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
-                            <div className="p-8">
-                                <h2 className="text-xl font-semibold mb-4">Urbana vs Rural (Todos los Años)</h2>
+                            <div className="p-8 ">
+                                <h2 className="text-xl font-semibold mb-4 text-center">Urbana vs Rural</h2>
                                 <LineChartMultiple
                                     data={data}
                                     availableYears={availableYears}

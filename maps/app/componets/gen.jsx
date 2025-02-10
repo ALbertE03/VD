@@ -35,7 +35,7 @@ const StackedAreaChart = ({ jsonUrl }) => {
 
     return (
         <div className="w-full pt-5 flex flex-col items-center h-[500px]">
-            <h2 className="text-xl font-bold mb-4">Distribución del Nivel Educacional (1998-2022)</h2>
+            <h2 className="text-xl font-bold mb-4">Distribución del Nivel Educacional</h2>
             <ResponsiveContainer width="90%" height={400}>
                 <AreaChart data={data}>
                     <CartesianGrid strokeDasharray="3 3" />
