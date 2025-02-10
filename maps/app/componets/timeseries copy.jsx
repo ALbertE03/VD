@@ -93,11 +93,19 @@ const TimeSeriesChart1 = memo(({ url, name }) => {
     }
 
     const colors = [
-        "#8884d8", "#82ca9d", "#ffc658", "#ff7300",
-        "#00c49f", "#0088fe", "#ff0000", "#d0ed57",
-        "#ff7300", "#a4de6c", "#c6e2ff", "#ffbb28",
-        "#ff8042", "#ffc658", "#00C49F", "#0088FE"
+        "#403D39", // Gris oscuro
+        "#FFFCF2", // Blanco roto
+        "#EB5E28", // Naranja terracota
+        "#252422", // Casi negro
+        "#7E8D85", // Verde grisáceo
+        "#D8D2C3", // Beige claro
+        "#B8B2A6", // Beige grisáceo oscuro
+        "#E0DAD1", // Beige cálido
+        "#A68A64", // Marrón claro
+        "#6B705C", // Verde apagado
+        "#D4A373"  // Naranja suave
     ];
+
 
     const handleLineClick = (concepto) => {
         setVisibleLines((prev) => ({

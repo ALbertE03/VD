@@ -13,7 +13,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import InteractiveChart from './InteractiveChart';
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
+const COLORS = ["#EB5E28", "#A68A64", "#6B705C"];
 const ChartComponent = ({ title, data, chartType: Chart, children }) => (
     <div className="p-8 w-full flex flex-col items-center">
         <h2 className="text-xl font-semibold mb-4">{title}</h2>
@@ -208,24 +208,6 @@ becarios,33361,31839,29282,24743,22470,19885,14064,10986,10382,9704,9593,8987,97
                             </div>
                         </div>
 
-                        {/*<div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
-                            <div className="p-8">
-                                <h2 className="text-xl font-semibold mb-4">Becarios (1985-2022)</h2>
-                                <BarChartComponent
-                                    data={data3}
-                                    availableYears={availableYears}
-                                />
-                            </div>
-                        </div>
-                       <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
-                            <div className="p-8">
-                                <h2 className="text-xl font-semibold mb-4">Semi Internos</h2>
-                                <AreaChartComponent
-                                    data={data4}
-                                    availableYears={availableYears}
-                                />
-                            </div>
-    </div>*/}
                         <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md col-span-2">
                             <ChartComponent
                                 title="Nivel Educacional de la Población economicamente activa"

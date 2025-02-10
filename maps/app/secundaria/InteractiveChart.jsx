@@ -47,8 +47,8 @@ Secundaria,1027,1025,1028,1004,992,984,980,982,984,971,983,992,1001,1014,1003,10
                     <Area
                         type="monotone"
                         dataKey={selectedConcept}
-                        stroke="#8884d8"
-                        fill="#8884d8"
+                        stroke="#6B705C"
+                        fill="#6B705C "
                         strokeWidth={2}
                         dot={{ r: 4 }}
                         activeDot={{ r: 6 }}

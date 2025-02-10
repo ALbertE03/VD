@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 const COLORS = {
-    Hombres: "#8884d8",
+    Hombres: "#D4A373",
     Mujeres: "#ffc658",
-    Ambos: "#82ca9d",
+    Ambos: "#7E8D85",
 };
 
 const StackedAreaChart = ({ jsonUrl }) => {

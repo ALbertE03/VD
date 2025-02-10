@@ -58,7 +58,7 @@ const BarChartComponent = memo(({ url }) => {
                     <YAxis type="category" dataKey="year" />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="value" fill="#8884d8" /> {/* Barra horizontal */}
+                    <Bar dataKey="value" fill="#7E8D85" /> {/* Barra horizontal */}
                     <ReferenceLine
                         x={average}
                         label={{

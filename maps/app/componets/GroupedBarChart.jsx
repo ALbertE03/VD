@@ -71,8 +71,8 @@ const GroupedBarChart = ({ url, name }) => {
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="Matrícula inicial" fill="#8884d8" name="Matrícula Inicial" />
-                    <Bar dataKey="Graduados" fill="#82ca9d" name="Graduados" />
+                    <Bar dataKey="Matrícula inicial" fill="#D8D2C3" name="Matrícula Inicial" />
+                    <Bar dataKey="Graduados" fill="#B8B2A6" name="Graduados" />
                 </BarChart>
             </ResponsiveContainer></div>
     );

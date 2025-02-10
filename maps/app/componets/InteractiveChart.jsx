@@ -47,8 +47,8 @@ Total,13815,13361,13033,12942,12908,12850,12702,12663,12511,12254,12263,12259,12
                     <Area
                         type="monotone"
                         dataKey={selectedConcept}
-                        stroke="#8884d8"
-                        fill="#8884d8"
+                        stroke="#403D39 "
+                        fill="#403D39 "
                         strokeWidth={2}
                         dot={{ r: 4 }}
                         activeDot={{ r: 6 }}

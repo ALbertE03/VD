@@ -44,8 +44,8 @@ Primaria,10187,9837,9617,9522,9417,9375,9346,9368,9440,9425,9420,9481,9487,9401,
                     <Area
                         type="monotone"
                         dataKey={selectedConcept}
-                        stroke="#8884d8"
-                        fill="#8884d8"
+                        stroke="#6B705C"
+                        fill="#6B705C"
                         strokeWidth={2}
                         dot={{ r: 4 }}
                         activeDot={{ r: 6 }}

@@ -129,8 +129,16 @@ const data = [
         2021: 5980,
     },
 ];
+const COLORS = [
+    "#D8D2C3", // Beige claro (base del pastel)
+    "#E0DAD1", // Beige cálido (crema)
+    "#A68A64", // Marrón claro (decoración de chocolate)
+    "#D4A373", // Naranja suave (glaseado o relleno frutal)
+    "#B8B2A6", // Beige grisáceo oscuro (detalle de nueces o crumble)
+    "#6B705C"  // Verde apagado (decoración sutil de hojas o pistachos)
+];
 
-const COLORS = ['#8884d8', '#8dd1e1', '#82ca9d', '#ffc658', '#ff8042'];
+
 
 const PieChartWithSelector = () => {
     const [selectedYear, setSelectedYear] = useState('2000');
@@ -170,7 +178,7 @@ const PieChartWithSelector = () => {
                         cy="50%"
                         outerRadius={150}
                         label={({ name }) => name}
-                        fill="#8884d8"
+                        fill="black"
                     >
                         {pieData.map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />

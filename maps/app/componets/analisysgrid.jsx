@@ -1,21 +1,38 @@
 'use client';
-
 import React, { useState, useEffect, memo } from 'react';
+import {
+    ResponsiveContainer,
+    BarChart,
+    CartesianGrid,
+    XAxis,
+    YAxis,
+    Tooltip,
+    Legend,
+    Bar,
+    LineChart,
+    Line,
+    AreaChart,
+    Area
+} from 'recharts';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
-import {
-    BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, AreaChart, Area,
-    XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
-} from 'recharts';
 import * as d3 from 'd3';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-const COLORS = ["#0088FE"];
+// Paleta de colores consistente
+const COLORS = [
+    "#D8D2C3", // Beige claro (base del pastel)
+    "#E0DAD1", // Beige cálido (crema)
+    "#A68A64", // Marrón claro (decoración de chocolate)
+    "#D4A373", // Naranja suave (glaseado o relleno frutal)
+    "#B8B2A6", // Beige grisáceo oscuro (detalle de nueces o crumble)
+    "#6B705C"  // Verde apagado (decoración sutil de hojas o pistachos)
+];
 
-const ChartComponent = ({ title, data, chartType: Chart, children }) => (
+const ChartComponent = ({ title, data, chartType: Chart, dataKey, color, children }) => (
     <div className="p-8 w-full flex flex-col items-center h-[500px]">
         <h2 className="text-xl font-semibold mb-4">{title}</h2>
         <ResponsiveContainer width="100%" height={400}>
@@ -32,7 +49,6 @@ const ChartComponent = ({ title, data, chartType: Chart, children }) => (
 );
 
 const BarChartAllYears = ({ data, availableYears }) => {
-
     const transformedData = availableYears.map(year => ({
         year: year,
         value: data[0][year] || 0
@@ -46,11 +62,12 @@ const BarChartAllYears = ({ data, availableYears }) => {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="value" fill={COLORS[0]} />
+                <Bar dataKey="value" fill={COLORS[2]} /> {/* Marrón claro para las barras */}
             </BarChart>
         </ResponsiveContainer>
     );
 };
+
 const MultiLineChartComponent = memo(({ url }) => {
     const [data, setData] = useState([]);
     const [concepts, setConcepts] = useState([]);
@@ -81,7 +98,6 @@ const MultiLineChartComponent = memo(({ url }) => {
 
         fetchData();
     }, [url]);
-    const COLORS = ["#8884d8", "#82ca9d", "#ffc658", "#d62728", "#2ca02c", "#9467bd", "#ff7f0e"];
 
     return (
         <div className="w-full flex flex-col items-center h-[500px]">
@@ -98,7 +114,7 @@ const MultiLineChartComponent = memo(({ url }) => {
                             key={concept}
                             type="monotone"
                             dataKey={concept}
-                            stroke={COLORS[index % COLORS.length]}
+                            stroke={COLORS[index % COLORS.length]} // Usando la paleta de colores
                             strokeWidth={2}
                             dot={{ r: 3 }}
                             activeDot={{ r: 6 }}
@@ -110,6 +126,7 @@ const MultiLineChartComponent = memo(({ url }) => {
     );
 });
 MultiLineChartComponent.displayName = 'MultiLineChartComponent';
+
 const AnalysisCarousel = ({ pieChartUrl }) => {
     const [data, setData] = useState([]);
     const [availableYears, setAvailableYears] = useState([]);
@@ -143,9 +160,7 @@ Madres beneficiadas,95694,101530,110779,131816,136557,145248,138502,140518,14213
             year: year,
             value: data.find(d => d.name === concept)[year] || 0
         }));
-    };
-
-    return (
+    }; return (
         <div className="w-full p-4">
             <Swiper slidesPerView={1} navigation pagination={{ clickable: true }} modules={[Navigation, Pagination]}>
                 <SwiperSlide>
@@ -159,7 +174,7 @@ Madres beneficiadas,95694,101530,110779,131816,136557,145248,138502,140518,14213
                             />
                         </div>
 
-                        {/* Gráfico de líneas: Matrícula Final */}
+
                         <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
                             <ChartComponent
                                 title="Matrícula Final"
@@ -170,13 +185,13 @@ Madres beneficiadas,95694,101530,110779,131816,136557,145248,138502,140518,14213
                                 <XAxis dataKey="year" />
                                 <YAxis />
                                 <Tooltip
-                                    contentStyle={{ backgroundColor: "#8884d8", color: "white" }}
+                                    contentStyle={{ backgroundColor: "#403D39", color: "white" }}
                                     labelStyle={{ fontWeight: "bold", color: "white" }}
                                     formatter={(value) => [`${value}`, 'Valor']}
                                     labelFormatter={(label) => `Año: ${label}`}
                                 />
                                 <Legend />
-                                <Line type="monotone" dataKey="value" stroke={COLORS[0]} />
+                                <Line type="monotone" dataKey="value" stroke="#403D39" />
                             </ChartComponent>
                         </div>
 
@@ -185,7 +200,7 @@ Madres beneficiadas,95694,101530,110779,131816,136557,145248,138502,140518,14213
                             <MultiLineChartComponent url={pieChartUrl} />
                         </div>
 
-                        {/* Gráfico de área: Asistencia Promedio Anual */}
+
                         <div className="p-4 bg-white border border-gray-200 rounded-xl shadow-md">
                             <ChartComponent
                                 title="Asistencia Promedio Anual"

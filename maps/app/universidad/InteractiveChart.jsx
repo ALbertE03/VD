@@ -45,8 +45,8 @@ Superior,35,35,35,35,35,35,35,34,33,33,32,56,57,58,59,63,63,64,64,64,65,56,56,59
                     <Area
                         type="monotone"
                         dataKey={selectedConcept}
-                        stroke="#8884d8"
-                        fill="#8884d8"
+                        stroke="#6B705C"
+                        fill="#6B705C "
                         strokeWidth={2}
                         dot={{ r: 4 }}
                         activeDot={{ r: 6 }}
