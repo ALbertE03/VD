@@ -2,6 +2,7 @@ import Header from "../componets/header";
 import Dashboard from "./componets/Dashboard";
 //import './page.css';
 import SubHeader from "./componets/subHeader";
+import EstadisticasEducacion from "./gra";
 export default function Home() {
     return <div >
         <Header />
@@ -9,6 +10,7 @@ export default function Home() {
             Artemisa
         </h1>
         <SubHeader />
+        <EstadisticasEducacion />
     </div >
 
 };

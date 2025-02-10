@@ -35,8 +35,8 @@ const CombinedCharts = () => {
         <div className="p-4 bg-[#CCC5B7] min-h-screen grid grid-cols-2 grid-rows-2 gap-4">
 
 
-            <div className="bg-white p-4 rounded-xl shadow-md mb-8">
-                <h2 className="text-xl font-semibold mb-4 text-[#403D39] text-center">Alumnos y Profesores por Municipio</h2>
+            <div className="bg-white p-4 rounded-xl shadow-md">
+                <h2 className="text-xl mb-4 text-[#403D39] text-center">Alumnos y Profesores por Municipio</h2>
                 <ResponsiveContainer width="100%" height={400}>
                     <BarChart data={municipios2.map((municipio, index) => ({
                         municipio,
@@ -54,7 +54,7 @@ const CombinedCharts = () => {
                 </ResponsiveContainer>
             </div>
 
-            <div className="bg-white p-6 rounded-xl shadow-md mb-8">
+            <div className="bg-white p-6 rounded-xl shadow-md">
                 <h2 className="text-xl font-semibold mb-4 text-[#403D39] text-center">Alumnos y Profesores por Año</h2>
                 <ResponsiveContainer width="100%" height={400}>
                     <BarChart data={años.map((año, index) => ({
@@ -75,7 +75,7 @@ const CombinedCharts = () => {
                 </ResponsiveContainer>
             </div>
 
-            <div className="bg-white p-6 rounded-xl shadow-md mb-8">
+            <div className="bg-white p-6 rounded-xl shadow-md">
                 <h2 className="text-xl font-semibold mb-4 text-[#403D39] text-center">Círculos Infantiles y Relación Alumno/Docente por Municipio</h2>
                 <ResponsiveContainer width="100%" height={400}>
                     <BarChart data={municipios1.map((municipio, index) => ({
@@ -94,7 +94,7 @@ const CombinedCharts = () => {
                 </ResponsiveContainer>
             </div>
 
-            <div className="bg-white p-6 rounded-xl shadow-md mb-8">
+            <div className="bg-white p-6 rounded-xl shadow-md ">
                 <h2 className="text-xl font-semibold mb-4 text-[#403D39] text-center">Círculos Infantiles por Municipio</h2>
                 <ResponsiveContainer width="100%" height={400}>
                     <BarChart data={municipios5.map((municipio, index) => ({

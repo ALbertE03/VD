@@ -3,7 +3,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import './header.css';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 function Header() {
     const pathname = usePathname();
 
@@ -45,7 +46,7 @@ function Header() {
             </div>
             <nav>
                 {(isProvinceRoute || ischeck) && (
-                    <Link href="/" data-content="general">General</Link>
+                    <Link href="/" data-content="general"><FontAwesomeIcon icon={faHome} /></Link>
                 )}
                 <div className="dropdown">
                     <button className="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
