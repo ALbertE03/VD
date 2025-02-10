@@ -6,7 +6,7 @@ import PieChartWithSelector from './PieChart';
 const COLORS = ['#6B705C', '#EB5E28', '#7E8D85', '#A68A64', '#D4A373', '#B8B2A6'];
 
 const CombinedCharts = () => {
-    // Datos para los gráficos
+
     const municipios1 = ['Bahía Honda', 'Mariel', 'Guanajay', 'Caimito', 'Bauta', 'San Antonio de los Baños', 'Güira de Melena', 'Alquizar', 'Artemisa', 'Candelaria', 'San Cristóbal'];
     const circulosInfantiles = [2, 3, 2, 7, 7, 6, 5, 3, 6, 2, 6];
     const relacionAlumnoDocente = [5.2, 5.4, 8.5, 4.8, 8.3, 8.4, 6.8, 4.9, 8.4, 7.0, 7.4];
@@ -32,11 +32,11 @@ const CombinedCharts = () => {
     ];
 
     return (
-        <div className="p-4 bg-gray-100 min-h-screen grid grid-cols-2 grid-rows-2 gap-4">
+        <div className="p-4 bg-[#CCC5B7] min-h-screen grid grid-cols-2 grid-rows-2 gap-4">
 
-            {/* Sección 2: Alumnos y Profesores por Municipio */}
+
             <div className="bg-white p-4 rounded-xl shadow-md mb-8">
-                <h2 className="text-xl font-semibold mb-4 text-[#6B705C]">Alumnos y Profesores por Municipio</h2>
+                <h2 className="text-xl font-semibold mb-4 text-[#403D39] text-center">Alumnos y Profesores por Municipio</h2>
                 <ResponsiveContainer width="100%" height={400}>
                     <BarChart data={municipios2.map((municipio, index) => ({
                         municipio,
@@ -54,9 +54,8 @@ const CombinedCharts = () => {
                 </ResponsiveContainer>
             </div>
 
-            {/* Sección 3: Datos por Año */}
             <div className="bg-white p-6 rounded-xl shadow-md mb-8">
-                <h2 className="text-xl font-semibold mb-4 text-[#6B705C]">Datos por Año</h2>
+                <h2 className="text-xl font-semibold mb-4 text-[#403D39] text-center">Datos por Año</h2>
                 <ResponsiveContainer width="100%" height={400}>
                     <BarChart data={años.map((año, index) => ({
                         año,
@@ -76,9 +75,8 @@ const CombinedCharts = () => {
                 </ResponsiveContainer>
             </div>
 
-            {/* Sección 1: Círculos Infantiles y Relación Alumno/Docente por Municipio */}
             <div className="bg-white p-6 rounded-xl shadow-md mb-8">
-                <h2 className="text-xl font-semibold mb-4 text-[#6B705C]">Círculos Infantiles y Relación Alumno/Docente por Municipio</h2>
+                <h2 className="text-xl font-semibold mb-4 text-[#403D39] text-center">Círculos Infantiles y Relación Alumno/Docente por Municipio</h2>
                 <ResponsiveContainer width="100%" height={400}>
                     <BarChart data={municipios1.map((municipio, index) => ({
                         municipio,
@@ -96,11 +94,8 @@ const CombinedCharts = () => {
                 </ResponsiveContainer>
             </div>
 
-
-
-            {/* Sección 5: Círculos Infantiles por Municipio */}
             <div className="bg-white p-6 rounded-xl shadow-md mb-8">
-                <h2 className="text-xl font-semibold mb-4 text-[#6B705C]">Círculos Infantiles por Municipio</h2>
+                <h2 className="text-xl font-semibold mb-4 text-[#403D39] text-center">Círculos Infantiles por Municipio</h2>
                 <ResponsiveContainer width="100%" height={400}>
                     <BarChart data={municipios5.map((municipio, index) => ({
                         municipio,
@@ -116,11 +111,9 @@ const CombinedCharts = () => {
                 </ResponsiveContainer>
             </div>
 
-            {/* Sección 6: Asistencia a los Círculos Infantiles */}
-            <div className="bg-white p-6 rounded-xl shadow-md mb-8 col-span-2">
-                <h2 className="text-xl font-semibold mb-4 text-[#6B705C]">Asistencia a los Círculos Infantiles</h2>
-                <PieChartWithSelector />
 
+            <div className="bg-white p-6 rounded-xl shadow-md mb-8 col-span-2">
+                <PieChartWithSelector />
             </div>
         </div>
     );

@@ -27,7 +27,7 @@ const PieChartWithSelector = () => {
 
     return (
         <div className="bg-white p-6 rounded-lg shadow-md mb-8">
-            <h1 className="text-xl font-semibold mb-4 text-[#6B705C]">Asistencia a los Círculos Infantiles</h1>
+            <h1 className="text-xl font-semibold mb-4 text-[#403D39] text-center">Asistencia a los Círculos Infantiles</h1>
 
             {/* Selector de año */}
             <div className="mb-4">
